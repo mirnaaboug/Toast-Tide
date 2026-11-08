@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4e4a6">
+<title>which shot are you? · toast&amp;tide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&amp;family=Work+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#f4e4a6}
+*{box-sizing:border-box}
+a{color:#7b1e2e}a:hover{color:#5a1420}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #7b1e2e;outline-offset:3px}
+@keyframes tt-bob{0%,100%{transform:translateY(0) rotate(var(--r))}50%{transform:translateY(-16px) rotate(calc(var(--r) * -1))}}
+.tt-bob{animation:tt-bob 2.8s ease-in-out infinite}
+@keyframes tt-rise{from{opacity:0;transform:translateY(40px) rotate(2deg)}to{opacity:1;transform:none}}
+.tt-rise{animation:tt-rise .7s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes tt-slidein{from{opacity:0;transform:translateX(80px) rotate(3deg)}to{opacity:1;transform:none}}
+.tt-slidein{animation:tt-slidein .55s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes tt-wobble{0%,100%{transform:rotate(var(--r,-6deg))}50%{transform:rotate(calc(var(--r,-6deg) * -1))}}
+.tt-sticker{animation:tt-wobble 4.2s ease-in-out infinite}
+.tt-press{transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.tt-press:hover{transform:scale(1.04) rotate(-1deg)}
+.tt-press:active{transform:scale(.95)}
+.tt-answer{transition:transform .3s cubic-bezier(.3,1.8,.5,1)}
+.tt-answer:hover{transform:translateY(-6px) rotate(-1.2deg)}
+.tt-answer:active{transform:scale(.96)}
+@keyframes tt-pick{0%{transform:scale(1)}40%{transform:scale(1.08) rotate(-2deg)}100%{transform:scale(1) rotate(-2deg)}}
+.tt-picked{animation:tt-pick .4s cubic-bezier(.3,1.6,.5,1) both}
+.tt-fill{transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+@keyframes tt-slosh{0%,100%{transform:translateX(0)}50%{transform:translateX(-24px)}}
+.tt-slosh{animation:tt-slosh 1.6s ease-in-out infinite}
+@keyframes tt-reveal{0%{opacity:0;transform:translateY(-300px) rotate(-200deg) scale(.6)}70%{opacity:1;transform:translateY(16px) rotate(8deg) scale(1.05)}100%{opacity:1;transform:translateY(0) rotate(-4deg) scale(1)}}
+.tt-reveal{animation:tt-reveal 1s cubic-bezier(.3,1.1,.5,1) both}
+@keyframes tt-drip{0%,30%{transform:translateY(0) scale(.2);opacity:0}45%{transform:translateY(0) scale(1);opacity:1}80%{transform:translateY(70px);opacity:1}100%{transform:translateY(86px) scale(1.3,.4);opacity:0}}
+.tt-drip{animation:tt-drip 2.2s cubic-bezier(.6,0,.9,.6) infinite;transform-origin:50% 0}
+@keyframes tt-burst{0%{transform:rotate(var(--a)) translateY(0) scale(.2);opacity:0}30%{opacity:1}100%{transform:rotate(var(--a)) translateY(-190px) scale(1);opacity:0}}
+.tt-burst{animation:tt-burst 1.6s cubic-bezier(.2,.8,.3,1) infinite}
+@keyframes tt-spin{to{transform:rotate(360deg)}}
+.tt-spin{animation:tt-spin 18s linear infinite}
+@media (max-width: 640px){
+header,main{padding-left:20px !important;padding-right:20px !important}
+header>a:first-child{font-size:30px !important}
+header>a:last-child{min-height:44px !important;padding:0 14px !important;font-size:14px !important}
+main section{gap:24px !important}
+.tt-introrow{gap:8px !important;flex-wrap:nowrap !important}
+.tt-introrow svg{width:64px;height:136px}
+.tt-introrow>div{width:74px;text-align:center}
+.tt-introrow span{font-size:11px !important;line-height:14px !important}
+.tt-qprog{order:-1;flex-direction:row !important;padding-top:0 !important;justify-content:flex-start !important}
+.tt-qprog svg{width:44px;height:94px}
+.tt-respanel{height:360px !important}
+.tt-respanel .tt-reveal svg{width:120px;height:255px}
+[style*="min-height: 96px"]{min-height:72px !important;padding:14px 16px !important;font-size:16px !important}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<template id="tt-template">
+
+<div style="font-family: 'Work Sans', system-ui, sans-serif; color: #7b1e2e; background: #f4e4a6; min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column">
+
+<header style="width: 100%; max-width: 1360px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="https://mirnaaboug.github.io/toast-tide/" style="text-decoration: none; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 36px; letter-spacing: -0.02em; line-height: 1; color: #7b1e2e">toast&amp;tide</a>
+<a href="shot-bar.html" class="tt-press" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 9999px; border: 2px solid #7b1e2e; font-weight: 700; font-size: 16px; text-decoration: none">skip to the shot bar</a>
+</header>
+
+<main style="flex: 1; width: 100%; max-width: 1360px; margin: 0 auto; padding: 24px 40px 80px">
+
+
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{true}}">
+<section style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; padding-top: 24px">
+<span class="tt-sticker tt-rise" style="--r: -5deg; display: inline-block; padding: 8px 16px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">THE SHOT BAR · COMING SOON</span>
+<h1 class="tt-rise" style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: clamp(56px, 9vw, 120px); line-height: 0.92; letter-spacing: -0.02em; animation-delay: .1s">which shot<br>are you?</h1>
+<p class="tt-rise" style="margin: 0; max-width: 520px; font-size: 18px; line-height: 28px; animation-delay: .2s">Four new immunity shots are on their way. Answer five quick questions and we'll pour you your match.</p>
+<div class="tt-introrow" style="display: flex; align-items: flex-end; justify-content: center; gap: 28px; flex-wrap: wrap; padding: 24px 0 8px" aria-hidden="true">
+<sc-for list="{{introBottles}}" as="b" hint-placeholder-count="4">
+<div class="tt-bob" style="--r: {{b.rot}}; animation-delay: {{b.delay}}">
+<svg width="84" height="178" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="25" y="4" width="30" height="26" rx="4" fill="{{b.cap}}"></rect>
+<path d="M31 9v16M37 9v16M43 9v16M49 9v16" stroke-width="1.5"></path>
+<path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path>
+<path fill="{{b.label}}" d="M8 94h64v44H8z"></path>
+<path d="M22 116c6-6 12 6 18 0s12-6 18 0" stroke="{{b.ink}}" stroke-width="3"></path>
+</svg>
+<span style="display: block; margin-top: 8px; font-size: 13px; line-height: 18px; font-weight: 700">{{b.name}}</span>
+</div>
+</sc-for>
+</div>
+<button type="button" class="tt-press" onClick="{{start}}" style="display: inline-flex; align-items: center; gap: 10px; min-height: 64px; padding: 0 36px; border-radius: 9999px; border: 0; background: #7b1e2e; color: #fff8e6; font-size: 20px; font-weight: 700">find my shot
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+<span style="font-size: 13px; line-height: 18px">5 questions · about 30 seconds · no wrong answers</span>
+</section>
+</sc-if>
+
+
+<sc-if value="{{isQuestion}}" hint-placeholder-val="{{false}}">
+<section style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<sc-for list="{{questions}}" as="q" hint-placeholder-count="1">
+<sc-if value="{{q.show}}" hint-placeholder-val="{{true}}">
+<div class="tt-slidein" style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+<span style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: #fff8e6; border: 2px solid #7b1e2e; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">QUESTION {{q.n}} OF {{total}}</span>
+<sc-if value="{{q.canBack}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{back}}" style="min-height: 44px; padding: 0 4px; border: 0; background: transparent; color: #7b1e2e; font-size: 15px; font-weight: 700; text-decoration: underline">back</button>
+</sc-if>
+</div>
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.02em">{{q.text}}</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px">
+<sc-for list="{{q.answers}}" as="a" hint-placeholder-count="4">
+<button type="button" class="tt-answer {{a.cls}}" onClick="{{a.pick}}" aria-pressed="{{a.selected}}" style="display: flex; align-items: center; gap: 16px; min-height: 96px; padding: 20px 24px; border-radius: 20px; border: 2px solid #7b1e2e; background: {{a.bg}}; color: {{a.fg}}; text-align: left; font-size: 18px; line-height: 24px; font-weight: 700">
+<span style="flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 2px solid currentColor; font-size: 15px">{{a.key}}</span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span>{{a.label}}</span><span style="font-size: 14px; line-height: 20px; font-weight: 400">{{a.sub}}</span></span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</sc-for>
+</div>
+
+<div class="tt-qprog" style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 24px">
+<svg width="150" height="318" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="{{progressAria}}">
+<defs><clipPath id="tt-qclip"><path d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path></clipPath></defs>
+<rect x="25" y="4" width="30" height="26" rx="4" fill="#d9a21b"></rect>
+<path d="M31 9v16M37 9v16M43 9v16M49 9v16" stroke-width="1.5"></path>
+<path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path>
+<g clip-path="url(#tt-qclip)">
+<g class="tt-fill" style="transform: translateY({{fillY}}px)">
+<path class="tt-slosh" fill="{{fillColor}}" stroke="none" d="M-10 30c8-6 16 6 24 0s16-6 24 0 16 6 24 0 16-6 24 0 16 6 24 0V200H-10z"></path>
+</g>
+</g>
+<path d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path>
+</svg>
+<span style="font-size: 13px; line-height: 18px; font-weight: 700">{{progressText}}</span>
+</div>
+</section>
+</sc-if>
+
+
+<sc-if value="{{isResult}}" hint-placeholder-val="{{false}}">
+<section style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div class="tt-respanel" style="flex: 1 1 420px; min-width: 0; position: relative; height: 520px; border-radius: 20px; background: {{result.panel}}; border: 2px solid #7b1e2e; overflow: hidden; display: flex; align-items: center; justify-content: center">
+<svg class="tt-spin" style="position: absolute; width: 440px; height: 440px" viewBox="0 0 200 200" fill="none" stroke="#7b1e2e" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M100 10v24M100 166v24M10 100h24M166 100h24M36 36l17 17M147 147l17 17M164 36l-17 17M53 147l-17 17"></path></svg>
+<sc-for list="{{bursts}}" as="u" hint-placeholder-count="8">
+<span class="tt-burst" style="--a: {{u.angle}}; position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; border: 2px solid #7b1e2e; background: {{u.color}}; animation-delay: {{u.delay}}"></span>
+</sc-for>
+<div class="tt-reveal" style="position: relative">
+<svg width="170" height="361" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="{{result.aria}}">
+<rect x="25" y="4" width="30" height="26" rx="4" fill="{{result.cap}}"></rect>
+<path d="M31 9v16M37 9v16M43 9v16M49 9v16" stroke-width="1.5"></path>
+<path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path>
+<path fill="{{result.label}}" d="M8 94h64v44H8z"></path>
+<path d="M22 116c6-6 12 6 18 0s12-6 18 0" stroke="{{result.ink}}" stroke-width="3"></path>
+<path d="M17 66c2-6 6-10 11-12" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+
+<div class="tt-rise" style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; animation-delay: .5s">
+<span style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">YOUR MATCH · SHOT {{result.no}}</span>
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: clamp(48px, 6vw, 88px); line-height: 0.95; letter-spacing: -0.02em">{{result.title}}</h2>
+<p style="margin: 0; font-size: 18px; line-height: 28px; max-width: 520px">{{result.why}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{result.ingredients}}" as="ing" hint-placeholder-count="4">
+<span style="display: inline-block; padding: 8px 14px; border-radius: 9999px; background: #fff8e6; border: 2px solid #7b1e2e; font-size: 14px; font-weight: 700">{{ing}}</span>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 16px; line-height: 24px">Runner-up: <strong>{{runnerUp}}</strong></p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+<a href="shot-bar.html" class="tt-press" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-weight: 700; font-size: 17px; text-decoration: none">save me a {{result.name}}
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<button type="button" class="tt-press" onClick="{{restart}}" style="min-height: 56px; padding: 0 24px; border-radius: 9999px; border: 2px solid #7b1e2e; background: transparent; color: #7b1e2e; font-size: 16px; font-weight: 700">take it again</button>
+</div>
+</div>
+</section>
+</sc-if>
+
+</main>
+</div>
+</template>
+<script>
+// Tiny runtime: renders the design's template and patches the page in place.
+(function () {
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g, WHOLE = /^\{\{\s*([^}]+?)\s*\}\}$/;
+  var SVGNS = 'http://www.w3.org/2000/svg';
+    function lookup(path, scope) {
+    if (path === 'true') return true; if (path === 'false') return false; if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i = 0; i < parts.length; i++) { if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  function interp(s, scope) { return s.replace(HOLE, function (_, p) { var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function val(s, scope) { var m = s.match(WHOLE); return m ? lookup(m[1], scope) : interp(s, scope); }
+
+  // template -> virtual nodes
+  function build(nodes, scope, out) {
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (n.nodeType === 3) { out.push({ text: interp(n.nodeValue, scope) }); continue; }
+      if (n.nodeType !== 1) continue;
+      var tag = n.localName;
+      if (tag === 'sc-if') { if (val(n.getAttribute('value') || '', scope)) build(n.childNodes, scope, out); continue; }
+      if (tag === 'sc-for') {
+        var list = val(n.getAttribute('list') || '', scope) || [], as = n.getAttribute('as') || 'item';
+        for (var j = 0; j < list.length; j++) { var sc = Object.create(scope); sc[as] = list[j]; sc.$index = j; build(n.childNodes, sc, out); }
+        continue;
+      }
+      var attrs = {}, events = {}, props = {};
+      for (var a = 0; a < n.attributes.length; a++) {
+        var at = n.attributes[a], name = at.name, v = val(at.value, scope), lname = name.toLowerCase();
+        if (lname.indexOf('hint-') === 0) continue;
+        if (lname.indexOf('on') === 0 && (typeof v === 'function' || WHOLE.test(at.value))) {
+          var ev = lname.slice(2);
+          if (ev === 'change' && (tag === 'input' || tag === 'textarea')) ev = 'input';
+          if (typeof v === 'function') events[ev] = v;
+          continue;
+        }
+        if (name === 'value' && tag === 'input') { props.value = v == null ? '' : String(v); continue; }
+        if (name === 'disabled') { if (v === true || v === 'true' || v === '') attrs.disabled = ''; continue; }
+        if (v === false || v == null) continue;
+        attrs[name] = String(v);
+      }
+      out.push({ tag: tag, ns: n.namespaceURI, attrs: attrs, events: events, props: props, kids: build(n.childNodes, scope, []) });
+    }
+    return out;
+  }
+
+  function create(v) {
+    if (v.text !== undefined) return document.createTextNode(v.text);
+    var el = v.ns === SVGNS ? document.createElementNS(SVGNS, v.tag) : document.createElement(v.tag);
+    el._h = {};
+    update(el, v, true);
+    for (var i = 0; i < v.kids.length; i++) el.appendChild(create(v.kids[i]));
+    return el;
+  }
+  function listen(el, ev) { el.addEventListener(ev, function (e) { var f = el._h[ev]; if (f) f(e); }); }
+  function update(el, v, fresh) {
+    var prev = el._a || {}, k;
+    for (k in prev) { if (!(k in v.attrs)) el.removeAttribute(k); }
+    for (k in v.attrs) { if (prev[k] !== v.attrs[k]) el.setAttribute(k, v.attrs[k]); }
+    el._a = v.attrs;
+    for (k in v.events) { if (!(k in el._h)) listen(el, k); }
+    var h = {}; for (k in el._h) h[k] = null; for (k in v.events) h[k] = v.events[k]; el._h = h;
+    if ('value' in v.props && el.value !== v.props.value) el.value = v.props.value;
+  }
+  function same(el, v) {
+    if (v.text !== undefined) return el.nodeType === 3;
+    return el.nodeType === 1 && el.localName === v.tag && el.namespaceURI === (v.ns || el.namespaceURI);
+  }
+  function patch(parent, vkids) {
+    var kids = parent.childNodes;
+    for (var i = 0; i < vkids.length; i++) {
+      var v = vkids[i], el = kids[i];
+      if (!el) { parent.appendChild(create(v)); continue; }
+      if (!same(el, v)) { parent.replaceChild(create(v), el); continue; }
+      if (v.text !== undefined) { if (el.nodeValue !== v.text) el.nodeValue = v.text; continue; }
+      update(el, v, false);
+      patch(el, v.kids);
+    }
+    while (kids.length > vkids.length) parent.removeChild(parent.lastChild);
+  }
+
+  var tpl = document.getElementById('tt-template').content;
+  window.DCLogic = class DCLogic {
+    constructor() { this.props = {}; this.state = {}; this._q = false; }
+    setState(u) {
+      var p = typeof u === 'function' ? u(this.state, this.props) : u;
+      this.state = Object.assign({}, this.state, p);
+      if (this._q) return; this._q = true;
+      var self = this; Promise.resolve().then(function () { self._q = false; self._render(); });
+    }
+    forceUpdate() { this._render(); }
+    _render() { patch(this._root, build(tpl.childNodes, this.renderVals(), [])); }
+  };
+  window.ttMount = function (C) {
+    var c = new C(); c._root = document.getElementById('app'); c._render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+
+</script>
+<script>
+
+var JAM = '#7b1e2e', CREAM = '#fff8e6', SEA = '#9cc5be', BUTTER = '#f4e4a6', DEEP = '#5a1420';
+var SHOTS = {
+  golden: { no: '01', name: 'Golden Hour', cap: '#d9a21b', label: '#f2b632', ink: JAM, panel: BUTTER, ingredients: ['turmeric', 'ginger', 'lemon', 'black pepper'],
+    why: 'You like your mornings slow, warm and a little golden. A gentle kick of ginger and pepper, nothing that shouts.' },
+  beet: { no: '02', name: 'Beet the Heat', cap: '#8e1b3a', label: '#b8264a', ink: CREAM, panel: CREAM, ingredients: ['beetroot', 'lime', 'ginger'],
+    why: 'You’re up early and out on the water before everyone else. Earthy, tangy and the brightest pink in the fridge.' },
+  green: { no: '03', name: 'Green Tide', cap: '#2f7d5b', label: '#4c9a6a', ink: CREAM, panel: SEA, ingredients: ['spirulina', 'lime', 'mint', 'sea salt'],
+    why: 'Calm, curious and happiest under the surface. Fresh, herby and as green as the reef.' },
+  citrus: { no: '04', name: 'Citrus Kick', cap: '#e3c22a', label: '#f4d23c', ink: JAM, panel: BUTTER, ingredients: ['lemon', 'lime', 'orange', 'cayenne'],
+    why: 'Full speed from the first alarm. Sour, sharp and finished with a little cayenne heat. Brave choice.' }
+};
+var ORDER = ['golden', 'beet', 'green', 'citrus'];
+var QUESTIONS = [
+  { text: 'how do you wake up?', answers: [
+    { label: 'slowly, with the sun', sub: 'five more minutes, always', pts: { golden: 2 } },
+    { label: 'already on the move', sub: 'alarm, shoes, out the door', pts: { citrus: 2 } },
+    { label: 'early and outdoors', sub: 'beat the wind, beat the crowds', pts: { beet: 2 } },
+    { label: 'quietly, by the sea', sub: 'coffee and the horizon', pts: { green: 2 } } ] },
+  { text: 'pick a flavour mood', answers: [
+    { label: 'warm and spicy', sub: 'like a hug with a kick', pts: { golden: 2 } },
+    { label: 'earthy and sweet', sub: 'rooted, a little wild', pts: { beet: 2 } },
+    { label: 'fresh and herby', sub: 'cool, green, crisp', pts: { green: 2 } },
+    { label: 'sour and sharp', sub: 'make my face scrunch', pts: { citrus: 2 } } ] },
+  { text: 'your perfect soma bay day', answers: [
+    { label: 'kitesurfing', sub: 'wind in, worries out', pts: { beet: 2, citrus: 1 } },
+    { label: 'diving the reef', sub: 'say hi to the fish', pts: { green: 2 } },
+    { label: 'sunbed and a book', sub: 'umbrella optional', pts: { golden: 2 } },
+    { label: 'a run on the beach', sub: 'then a swim, then breakfast', pts: { citrus: 2, beet: 1 } } ] },
+  { text: 'how brave are you with spice?', answers: [
+    { label: 'no heat, please', sub: 'keep it cool', pts: { green: 2, beet: 1 } },
+    { label: 'a little warmth', sub: 'just a tingle', pts: { golden: 2 } },
+    { label: 'a proper kick', sub: 'wake me up', pts: { beet: 1, golden: 1 } },
+    { label: 'bring the fire', sub: 'I like cayenne in things', pts: { citrus: 2 } } ] },
+  { text: 'pick a colour', answers: [
+    { label: 'sunrise gold', sub: '', pts: { golden: 2 } },
+    { label: 'hot pink', sub: '', pts: { beet: 2 } },
+    { label: 'reef green', sub: '', pts: { green: 2 } },
+    { label: 'lemon yellow', sub: '', pts: { citrus: 2 } } ] }
+];
+var KEYS = ['a', 'b', 'c', 'd'];
+
+class Component extends DCLogic {
+  state = { step: -1, answers: [], picked: null };
+
+  componentWillUnmount() { clearTimeout(this._t); }
+
+  choose(qi, ai) {
+    if (this.state.picked !== null) return;
+    var answers = this.state.answers.slice(0, qi);
+    answers[qi] = ai;
+    this.setState({ answers: answers, picked: ai });
+    var self = this;
+    clearTimeout(this._t);
+    this._t = setTimeout(function () {
+      self.setState({ step: qi + 1 >= QUESTIONS.length ? 99 : qi + 1, picked: null });
+    }, 550);
+  }
+
+  scores() {
+    var sc = { golden: 0, beet: 0, green: 0, citrus: 0 };
+    this.state.answers.forEach(function (ai, qi) {
+      var pts = QUESTIONS[qi].answers[ai].pts;
+      for (var k in pts) sc[k] += pts[k];
+    });
+    return ORDER.slice().sort(function (a, b) { return (sc[b] - sc[a]) || (ORDER.indexOf(a) - ORDER.indexOf(b)); });
+  }
+
+  renderVals() {
+    var self = this, s = this.state;
+    var total = QUESTIONS.length;
+    var isQuestion = s.step >= 0 && s.step < total;
+    var isResult = s.step === 99;
+
+    var questions = QUESTIONS.map(function (q, qi) {
+      return {
+        show: s.step === qi, n: qi + 1, text: q.text, canBack: qi > 0,
+        answers: q.answers.map(function (a, ai) {
+          var sel = s.answers[qi] === ai && (s.picked === ai || s.step !== qi);
+          var justPicked = s.step === qi && s.picked === ai;
+          return { key: KEYS[ai], label: a.label, sub: a.sub, selected: sel ? 'true' : 'false', bg: sel ? JAM : CREAM, fg: sel ? CREAM : JAM, cls: justPicked ? 'tt-picked' : '',
+            pick: function () { self.choose(qi, ai); } };
+        })
+      };
+    });
+
+    var answered = isResult ? total : (isQuestion ? s.answers.filter(function (a, i) { return i < s.step || (i === s.step && s.picked !== null); }).length : 0);
+    var ranking = this.scores();
+    var lead = SHOTS[ranking[0]];
+    var r = SHOTS[ranking[0]];
+
+    var bursts = [];
+    for (var i = 0; i < 10; i++) bursts.push({ angle: (i * 36) + 'deg', delay: (i * 0.16) + 's', color: i % 2 ? r.label : CREAM });
+
+    return {
+      isIntro: s.step === -1, isQuestion: isQuestion, isResult: isResult, total: total,
+      introBottles: ORDER.map(function (k, i) { var b = SHOTS[k]; return { name: b.name, cap: b.cap, label: b.label, ink: b.ink, rot: (i % 2 ? 6 : -6) + 'deg', delay: (-i * 0.5) + 's' }; }),
+      start: function () { self.setState({ step: 0, answers: [], picked: null }); },
+      back: function () { clearTimeout(self._t); self.setState({ step: Math.max(0, s.step - 1), picked: null }); },
+      restart: function () { self.setState({ step: -1, answers: [], picked: null }); },
+      questions: questions,
+      fillY: Math.round(140 - (answered / total) * 112),
+      fillColor: answered ? lead.label : CREAM,
+      progressText: answered + ' of ' + total + ' poured',
+      progressAria: 'Progress: ' + answered + ' of ' + total + ' questions answered',
+      result: { no: r.no, name: r.name, title: 'you’re a ' + r.name.toLowerCase(), why: r.why, cap: r.cap, label: r.label, ink: r.ink, panel: r.panel, ingredients: r.ingredients, aria: r.name + ' shot bottle' },
+      runnerUp: SHOTS[ranking[1]].name,
+      bursts: bursts
+    };
+  }
+}
+
+ttMount(Component);
+</script>
+</body>
+</html>

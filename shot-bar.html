@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4e4a6">
+<title>the shot bar · coming soon · toast&amp;tide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&amp;family=Work+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#f4e4a6}
+*{box-sizing:border-box}
+a{color:#7b1e2e}a:hover{color:#5a1420}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #7b1e2e;outline-offset:3px}
+.tt-onjam button:focus-visible,.tt-onjam a:focus-visible{outline-color:#f4e4a6}
+@keyframes tt-tumble{0%{opacity:0;transform:translateY(-520px) rotate(calc(var(--r) - 70deg))}70%{opacity:1;transform:translateY(12px) rotate(calc(var(--r) + 4deg))}85%{transform:translateY(-6px) rotate(calc(var(--r) - 2deg))}100%{opacity:1;transform:translateY(0) rotate(var(--r))}}
+.tt-tumble{animation:tt-tumble .9s cubic-bezier(.3,1.1,.5,1) both}
+@keyframes tt-rock{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.tt-rock{animation:tt-rock 3.6s ease-in-out infinite}
+@keyframes tt-drip{0%,30%{transform:translateY(0) scale(.2);opacity:0}45%{transform:translateY(0) scale(1);opacity:1}80%{transform:translateY(64px) scale(1);opacity:1}100%{transform:translateY(80px) scale(1.3,.4);opacity:0}}
+.tt-drip{animation:tt-drip 2.6s cubic-bezier(.6,0,.9,.6) infinite;transform-origin:50% 0}
+@keyframes tt-puddle{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.08)}}
+.tt-puddle{animation:tt-puddle 2.6s ease-in-out infinite}
+@keyframes tt-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tt-marquee{animation:tt-marquee 28s linear infinite}
+@keyframes tt-wobble{0%,100%{transform:rotate(var(--r,-6deg))}50%{transform:rotate(calc(var(--r,-6deg) * -1))}}
+.tt-sticker{animation:tt-wobble 4.2s ease-in-out infinite}
+@keyframes tt-rise{from{opacity:0;transform:translateY(36px) rotate(2deg)}to{opacity:1;transform:none}}
+.tt-rise{animation:tt-rise .8s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes tt-tickA{0%{transform:translateY(-10px) scale(1.12)}100%{transform:none}}
+@keyframes tt-tickB{0%{transform:translateY(-10px) scale(1.12)}100%{transform:none}}
+.tt-tickA{animation:tt-tickA .35s cubic-bezier(.3,1.8,.5,1)}
+.tt-tickB{animation:tt-tickB .35s cubic-bezier(.3,1.8,.5,1)}
+.tt-shot{transition:transform .4s cubic-bezier(.3,1.7,.5,1)}
+.tt-shot:hover{transform:translateY(-8px) rotate(-1.2deg)}
+.tt-pour{transition:transform .5s cubic-bezier(.3,1.6,.5,1);transform-origin:50% 90%}
+.tt-shot:hover .tt-pour{transform:rotate(-28deg)}
+.tt-hdrop{opacity:0}
+.tt-shot:hover .tt-hdrop{animation:tt-drip 1.3s .3s cubic-bezier(.6,0,.9,.6) infinite}
+.tt-press{transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.tt-press:hover{transform:scale(1.05) rotate(-1deg)}
+.tt-press:active{transform:scale(.94)}
+@keyframes tt-jiggle{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-4px,1px) rotate(-6deg)}75%{transform:translate(4px,-1px) rotate(6deg)}}
+.tt-shake{animation:tt-jiggle .35s linear infinite;transform-origin:50% 80%}
+@keyframes tt-twist{0%,30%{transform:translateY(0) rotate(0)}60%,80%{transform:translateY(-16px) rotate(-24deg)}100%{transform:translateY(0) rotate(0)}}
+.tt-twist{animation:tt-twist 2.4s cubic-bezier(.3,1.4,.5,1) infinite;transform-origin:50% 100%;transform-box:fill-box}
+@keyframes tt-tip{0%,25%{transform:rotate(0)}55%,80%{transform:rotate(-120deg)}100%{transform:rotate(0)}}
+.tt-tip{animation:tt-tip 2.6s cubic-bezier(.3,1.3,.5,1) infinite;transform-origin:50% 60%}
+@keyframes tt-clinkL{0%,100%{transform:rotate(-8deg)}45%,55%{transform:translateX(18px) rotate(14deg)}}
+@keyframes tt-clinkR{0%,100%{transform:rotate(8deg)}45%,55%{transform:translateX(-18px) rotate(-14deg)}}
+.tt-clinkL{animation:tt-clinkL 1.4s cubic-bezier(.3,1.5,.5,1) infinite;transform-origin:50% 100%}
+.tt-clinkR{animation:tt-clinkR 1.4s cubic-bezier(.3,1.5,.5,1) infinite;transform-origin:50% 100%}
+@keyframes tt-flash{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08) rotate(-3deg);opacity:1}100%{transform:scale(1) rotate(-3deg);opacity:1}}
+.tt-flash{animation:tt-flash .5s cubic-bezier(.3,1.6,.5,1) both}
+.tt-stagewrap{height:600px}
+.tt-shot:active .tt-pour{transform:rotate(-28deg)}
+.tt-shot:active .tt-hdrop{animation:tt-drip 1.3s .3s cubic-bezier(.6,0,.9,.6) infinite}
+@media (max-width:640px){
+.tt-stage{transform:scale(.6);transform-origin:top center}.tt-stagewrap{height:370px}
+header,section[style*="padding"],#signup>div,footer{padding-left:20px !important;padding-right:20px !important}
+header>a:first-child{font-size:30px !important}
+header nav a:first-child{display:none !important}
+[role=timer]{gap:8px !important}
+[role=timer]>div{width:74px !important;height:86px !important}
+[role=timer] span[class]{font-size:36px !important}
+h2[style*="font-size: 64px"]{font-size:44px !important}
+h2[style*="font-size: 48px"]{font-size:38px !important}
+footer>div{text-align:left !important}
+.tt-marquee{font-size:24px !important}
+#signup [style*="padding: 32px"]{padding:24px 18px !important}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<template id="tt-template">
+
+<div id="top" style="font-family: 'Work Sans', system-ui, sans-serif; color: #7b1e2e; background: #f4e4a6; min-height: 100vh; overflow-x: hidden">
+
+
+<header style="max-width: 1360px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="https://mirnaaboug.github.io/toast-tide/" style="text-decoration: none; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 36px; letter-spacing: -0.02em; line-height: 1; color: #7b1e2e">toast&amp;tide</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<a href="https://mirnaaboug.github.io/toast-tide/" class="tt-press" style="display: inline-block; padding: 10px 18px; border-radius: 9999px; font-weight: 700; font-size: 16px; text-decoration: none">back to the menu</a>
+<a href="#signup" class="tt-press" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-weight: 700; font-size: 16px; text-decoration: none">get on the list</a>
+</nav>
+</header>
+
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 16px 40px 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
+<div class="tt-rise" style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 24px">
+<span class="tt-sticker" style="--r: -5deg; display: inline-block; padding: 8px 16px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">NEW COLLECTION · COMING SOON</span>
+<h1 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: clamp(56px, 8vw, 104px); line-height: 0.95; letter-spacing: -0.02em">small shots. big mornings.</h1>
+<p style="margin: 0; max-width: 520px; font-size: 18px; line-height: 28px"><strong>The shot bar</strong> is landing: drinkable immunity shots in tiny bottles. Turmeric, beetroot, lime, lemon, ginger and a few superfoods, pressed fresh and bottled to go.</p>
+
+<div style="display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">LAUNCHING {{launchLabel}}</span>
+<div role="timer" aria-label="{{timerAria}}" style="display: flex; flex-wrap: wrap; gap: 12px">
+<sc-for list="{{countdown}}" as="c" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 96px; height: 104px; border-radius: 20px; background: #fff8e6; border: 2px solid #7b1e2e">
+<span class="{{c.cls}}" style="display: inline-block; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 48px; line-height: 1; letter-spacing: -0.02em">{{c.value}}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">{{c.label}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<a href="#signup" class="tt-press" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-weight: 700; font-size: 17px; text-decoration: none">save me a shot
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+
+<div class="tt-stagewrap" style="flex: 1 1 540px; min-width: 0; display: flex; justify-content: center">
+<div class="tt-stage" role="img" aria-label="A stack of shot bottles tumbling into a pile, juice dripping from the open ones" style="position: relative; width: 540px; height: 600px; flex: 0 0 auto">
+<svg class="tt-puddle" style="position: absolute; left: 60px; top: 548px" width="440" height="40" viewBox="0 0 440 40" aria-hidden="true"><ellipse cx="220" cy="20" rx="210" ry="14" fill="#fff8e6" stroke="#7b1e2e" stroke-width="2.5"></ellipse></svg>
+<sc-for list="{{heroBottles}}" as="b" hint-placeholder-count="6">
+<div class="tt-tumble" style="--r: {{b.rot}}; position: absolute; left: {{b.left}}; top: {{b.top}}; width: 110px; height: 234px; animation-delay: {{b.delay}}">
+<div class="tt-rock" style="width: 100%; height: 100%; animation-delay: {{b.rockDelay}}">
+<svg width="110" height="234" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="25" y="4" width="30" height="26" rx="4" fill="{{b.cap}}"></rect>
+<path d="M31 9v16M37 9v16M43 9v16M49 9v16" stroke-width="1.5"></path>
+<path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path>
+<path fill="{{b.label}}" d="M8 94h64v44H8z"></path>
+<path d="M22 116c6-6 12 6 18 0s12-6 18 0" stroke="{{b.ink}}" stroke-width="3"></path>
+<path d="M17 66c2-6 6-10 11-12" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</sc-for>
+<sc-for list="{{drips}}" as="d" hint-placeholder-count="3">
+<svg class="tt-drip" style="position: absolute; left: {{d.left}}; top: {{d.top}}; animation-delay: {{d.delay}}" width="14" height="20" viewBox="0 0 14 20" aria-hidden="true"><path d="M7 1C7 1 1 9 1 13a6 6 0 0 0 12 0C13 9 7 1 7 1z" fill="{{d.color}}" stroke="#7b1e2e" stroke-width="1.5"></path></svg>
+</sc-for>
+<span class="tt-sticker" style="--r: 9deg; position: absolute; right: 0; top: 24px; display: inline-flex; align-items: center; justify-content: center; text-align: center; width: 124px; height: 124px; border-radius: 50%; background: #9cc5be; border: 2px solid #7b1e2e; color: #5a1420; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 24px; line-height: 1; padding: 12px">one gulp wonders</span>
+</div>
+</div>
+</section>
+
+
+<div style="background: #7b1e2e; color: #f4e4a6; overflow: hidden; padding: 18px 0" aria-hidden="true">
+<div class="tt-marquee" style="display: flex; width: max-content; gap: 40px; align-items: center; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 32px; letter-spacing: -0.02em; white-space: nowrap">
+<sc-for list="{{marquee}}" as="m" hint-placeholder-count="12">
+<span style="display: inline-flex; align-items: center; gap: 40px">{{m}}<svg width="14" height="20" viewBox="0 0 14 20" fill="none" stroke="#f4e4a6" stroke-width="2.5"><path d="M7 1C7 1 1 9 1 13a6 6 0 0 0 12 0C13 9 7 1 7 1z"></path></svg></span>
+</sc-for>
+</div>
+</div>
+
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 88px 40px 64px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: -0.02em">meet the lineup</h2>
+<p style="margin: 0; font-size: 16px; line-height: 24px">Hover or tap a bottle. Go on.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px">
+<sc-for list="{{shots}}" as="s" hint-placeholder-count="4">
+<article class="tt-rise" style="animation-delay: {{s.delay}}">
+<div class="tt-shot" style="height: 100%; display: flex; flex-direction: column; border-radius: 20px; background: #fff8e6; border: 2px solid #7b1e2e; overflow: hidden">
+<div style="position: relative; height: 300px; background: {{s.panel}}; border-bottom: 2px solid #7b1e2e; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 20px">
+<span style="position: absolute; top: 16px; left: 16px; display: inline-block; padding: 6px 12px; border-radius: 9999px; background: #fff8e6; border: 2px solid #7b1e2e; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">SHOT {{s.no}}</span>
+<div style="position: relative; width: 112px; height: 238px">
+<div class="tt-pour" style="width: 100%; height: 100%">
+<svg width="112" height="238" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="{{s.bottleAria}}">
+<rect x="25" y="4" width="30" height="26" rx="4" fill="{{s.cap}}"></rect>
+<path d="M31 9v16M37 9v16M43 9v16M49 9v16" stroke-width="1.5"></path>
+<path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path>
+<path fill="{{s.label}}" d="M8 94h64v44H8z"></path>
+<path d="M22 116c6-6 12 6 18 0s12-6 18 0" stroke="{{s.ink}}" stroke-width="3"></path>
+<path d="M17 66c2-6 6-10 11-12" stroke-width="2"></path>
+</svg>
+</div>
+<svg class="tt-hdrop" style="position: absolute; left: 2px; top: 40px" width="14" height="20" viewBox="0 0 14 20" aria-hidden="true"><path d="M7 1C7 1 1 9 1 13a6 6 0 0 0 12 0C13 9 7 1 7 1z" fill="{{s.label}}" stroke="#7b1e2e" stroke-width="1.5"></path></svg>
+</div>
+</div>
+<div style="padding: 24px; display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700">{{s.name}}</h3>
+<p style="margin: 0; font-size: 16px; line-height: 24px">{{s.blend}}</p>
+<span style="margin-top: 6px; font-size: 13px; line-height: 18px">{{s.note}}</span>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 96px; display: flex; flex-direction: column; gap: 32px">
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 48px; line-height: 1; letter-spacing: -0.02em">shake. twist. shoot.</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
+<div style="padding: 24px; border-radius: 20px; background: #fff8e6; display: flex; align-items: center; gap: 20px">
+<svg class="tt-shake" width="56" height="120" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="25" y="4" width="30" height="26" rx="4" fill="#d9a21b"></rect><path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path><path fill="#f2b632" d="M8 94h64v44H8z"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-size: 18px; font-weight: 700">shake it</h3><p style="margin: 0; font-size: 16px; line-height: 24px">The good stuff settles. Wake it up.</p></div>
+</div>
+<div style="padding: 24px; border-radius: 20px; background: #fff8e6; display: flex; align-items: center; gap: 20px">
+<svg width="56" height="120" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="tt-twist" x="25" y="4" width="30" height="26" rx="4" fill="#8e1b3a"></rect><path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path><path fill="#b8264a" d="M8 94h64v44H8z"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-size: 18px; font-weight: 700">twist the cap</h3><p style="margin: 0; font-size: 16px; line-height: 24px">One turn. That pop means it's fresh.</p></div>
+</div>
+<div style="padding: 24px; border-radius: 20px; background: #fff8e6; display: flex; align-items: center; gap: 20px">
+<svg class="tt-tip" width="56" height="120" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path><path fill="#4c9a6a" d="M8 94h64v44H8z"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-size: 18px; font-weight: 700">shoot it</h3><p style="margin: 0; font-size: 16px; line-height: 24px">One gulp. Make a face. Go to the beach.</p></div>
+</div>
+</div>
+</section>
+
+
+<section id="signup" class="tt-onjam" style="background: #7b1e2e; color: #fff8e6">
+<div style="max-width: 1360px; margin: 0 auto; padding: 88px 40px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: clamp(48px, 6vw, 80px); line-height: 0.95; letter-spacing: -0.02em; color: #f4e4a6">be first in line</h2>
+<p style="margin: 0; max-width: 460px; font-size: 18px; line-height: 28px">Leave your email and we'll tell you the second the shot bar opens. First sips are on us for the list. [YOUR LAUNCH OFFER]</p>
+<span style="font-size: 13px; line-height: 18px">We only email about Toast &amp; Tide. Unsubscribe any time.</span>
+</div>
+
+<div style="flex: 1 1 440px; min-width: 0; border-radius: 20px; background: #fff8e6; color: #7b1e2e; padding: 32px">
+<sc-if value="{{notSigned}}" hint-placeholder-val="{{true}}">
+<form onSubmit="{{submit}}" novalidate style="display: flex; flex-direction: column; gap: 24px; margin: 0">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="tt-email" style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">YOUR EMAIL</label>
+<input id="tt-email" type="email" autocomplete="email" value="{{email}}" onChange="{{onEmail}}" placeholder="you@example.com" style="min-height: 56px; padding: 0 20px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #ffffff; color: #7b1e2e; font-family: inherit; font-size: 16px">
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{false}}"><span role="alert" style="font-size: 13px; line-height: 18px; font-weight: 700">{{err}}</span></sc-if>
+</div>
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 12px">
+<legend style="padding: 0; margin-bottom: 12px; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">WHICH SHOT ARE YOU CURIOUS ABOUT? (OPTIONAL)</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{pickOpts}}" as="p" hint-placeholder-count="4">
+<button type="button" class="tt-press" onClick="{{p.pick}}" aria-pressed="{{p.selected}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px 0 10px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{p.bg}}; color: {{p.fg}}; font-size: 15px; font-weight: 700">
+<span style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #7b1e2e; background: {{p.cap}}"></span>{{p.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+<button type="submit" class="tt-press" style="min-height: 56px; border-radius: 9999px; border: 0; background: #7b1e2e; color: #fff8e6; font-size: 17px; font-weight: 700">put me on the list</button>
+</form>
+</sc-if>
+<sc-if value="{{signed}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; padding: 16px 0">
+<div style="display: flex; align-items: flex-end; gap: 4px" aria-hidden="true">
+<svg class="tt-clinkL" width="56" height="120" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="25" y="4" width="30" height="26" rx="4" fill="#d9a21b"></rect><path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path><path fill="#f2b632" d="M8 94h64v44H8z"></path></svg>
+<svg class="tt-clinkR" width="56" height="120" viewBox="0 0 80 170" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="25" y="4" width="30" height="26" rx="4" fill="#8e1b3a"></rect><path fill="#fff8e6" d="M29 30h22v8c0 5 12 9 17 18 3 6 4 12 4 20v76c0 8-6 13-14 13H22c-8 0-14-5-14-13V76c0-8 1-14 4-20 5-9 17-13 17-18z"></path><path fill="#b8264a" d="M8 94h64v44H8z"></path></svg>
+</div>
+<span class="tt-flash" style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: #9cc5be; color: #5a1420; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">YOU'RE ON THE LIST</span>
+<h3 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.02em">cheers to that</h3>
+<p style="margin: 0; max-width: 340px; font-size: 16px; line-height: 24px">{{thanks}}</p>
+<button type="button" class="tt-press" onClick="{{reset}}" style="min-height: 48px; padding: 0 22px; border-radius: 9999px; border: 2px solid #7b1e2e; background: transparent; color: #7b1e2e; font-size: 15px; font-weight: 700">use a different email</button>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+
+<footer style="max-width: 1360px; margin: 0 auto; padding: 48px 40px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center">
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 48px; line-height: 1; letter-spacing: -0.02em">toast&amp;tide</span>
+<div style="display: flex; flex-direction: column; gap: 4px; font-size: 16px; line-height: 24px; text-align: right">
+<span style="font-weight: 700">Soma Bay, Red Sea</span>
+<span>No toast left behind. No shot either.</span>
+</div>
+</footer>
+
+</div>
+</template>
+<script>
+// Tiny runtime: renders the design's template and patches the page in place.
+(function () {
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g, WHOLE = /^\{\{\s*([^}]+?)\s*\}\}$/;
+  var SVGNS = 'http://www.w3.org/2000/svg';
+    function lookup(path, scope) {
+    if (path === 'true') return true; if (path === 'false') return false; if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i = 0; i < parts.length; i++) { if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  function interp(s, scope) { return s.replace(HOLE, function (_, p) { var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function val(s, scope) { var m = s.match(WHOLE); return m ? lookup(m[1], scope) : interp(s, scope); }
+
+  // template -> virtual nodes
+  function build(nodes, scope, out) {
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (n.nodeType === 3) { out.push({ text: interp(n.nodeValue, scope) }); continue; }
+      if (n.nodeType !== 1) continue;
+      var tag = n.localName;
+      if (tag === 'sc-if') { if (val(n.getAttribute('value') || '', scope)) build(n.childNodes, scope, out); continue; }
+      if (tag === 'sc-for') {
+        var list = val(n.getAttribute('list') || '', scope) || [], as = n.getAttribute('as') || 'item';
+        for (var j = 0; j < list.length; j++) { var sc = Object.create(scope); sc[as] = list[j]; sc.$index = j; build(n.childNodes, sc, out); }
+        continue;
+      }
+      var attrs = {}, events = {}, props = {};
+      for (var a = 0; a < n.attributes.length; a++) {
+        var at = n.attributes[a], name = at.name, v = val(at.value, scope), lname = name.toLowerCase();
+        if (lname.indexOf('hint-') === 0) continue;
+        if (lname.indexOf('on') === 0 && (typeof v === 'function' || WHOLE.test(at.value))) {
+          var ev = lname.slice(2);
+          if (ev === 'change' && (tag === 'input' || tag === 'textarea')) ev = 'input';
+          if (typeof v === 'function') events[ev] = v;
+          continue;
+        }
+        if (name === 'value' && tag === 'input') { props.value = v == null ? '' : String(v); continue; }
+        if (name === 'disabled') { if (v === true || v === 'true' || v === '') attrs.disabled = ''; continue; }
+        if (v === false || v == null) continue;
+        attrs[name] = String(v);
+      }
+      out.push({ tag: tag, ns: n.namespaceURI, attrs: attrs, events: events, props: props, kids: build(n.childNodes, scope, []) });
+    }
+    return out;
+  }
+
+  function create(v) {
+    if (v.text !== undefined) return document.createTextNode(v.text);
+    var el = v.ns === SVGNS ? document.createElementNS(SVGNS, v.tag) : document.createElement(v.tag);
+    el._h = {};
+    update(el, v, true);
+    for (var i = 0; i < v.kids.length; i++) el.appendChild(create(v.kids[i]));
+    return el;
+  }
+  function listen(el, ev) { el.addEventListener(ev, function (e) { var f = el._h[ev]; if (f) f(e); }); }
+  function update(el, v, fresh) {
+    var prev = el._a || {}, k;
+    for (k in prev) { if (!(k in v.attrs)) el.removeAttribute(k); }
+    for (k in v.attrs) { if (prev[k] !== v.attrs[k]) el.setAttribute(k, v.attrs[k]); }
+    el._a = v.attrs;
+    for (k in v.events) { if (!(k in el._h)) listen(el, k); }
+    var h = {}; for (k in el._h) h[k] = null; for (k in v.events) h[k] = v.events[k]; el._h = h;
+    if ('value' in v.props && el.value !== v.props.value) el.value = v.props.value;
+  }
+  function same(el, v) {
+    if (v.text !== undefined) return el.nodeType === 3;
+    return el.nodeType === 1 && el.localName === v.tag && el.namespaceURI === (v.ns || el.namespaceURI);
+  }
+  function patch(parent, vkids) {
+    var kids = parent.childNodes;
+    for (var i = 0; i < vkids.length; i++) {
+      var v = vkids[i], el = kids[i];
+      if (!el) { parent.appendChild(create(v)); continue; }
+      if (!same(el, v)) { parent.replaceChild(create(v), el); continue; }
+      if (v.text !== undefined) { if (el.nodeValue !== v.text) el.nodeValue = v.text; continue; }
+      update(el, v, false);
+      patch(el, v.kids);
+    }
+    while (kids.length > vkids.length) parent.removeChild(parent.lastChild);
+  }
+
+  var tpl = document.getElementById('tt-template').content;
+  window.DCLogic = class DCLogic {
+    constructor() { this.props = {}; this.state = {}; this._q = false; }
+    setState(u) {
+      var p = typeof u === 'function' ? u(this.state, this.props) : u;
+      this.state = Object.assign({}, this.state, p);
+      if (this._q) return; this._q = true;
+      var self = this; Promise.resolve().then(function () { self._q = false; self._render(); });
+    }
+    forceUpdate() { this._render(); }
+    _render() { patch(this._root, build(tpl.childNodes, this.renderVals(), [])); }
+  };
+  window.ttMount = function (C) {
+    var c = new C(); c._root = document.getElementById('app'); c._render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+
+</script>
+<script>
+
+var JAM = '#7b1e2e', CREAM = '#fff8e6', SEA = '#9cc5be', BUTTER = '#f4e4a6', DEEP = '#5a1420';
+var SHOTS = [
+  { id: 'golden', no: '01', name: 'Golden Hour', blend: 'turmeric, ginger, lemon, black pepper', note: 'Warm, bright, a little spicy.', cap: '#d9a21b', label: '#f2b632', ink: JAM },
+  { id: 'beet', no: '02', name: 'Beet the Heat', blend: 'beetroot, lime, ginger', note: 'Earthy, tangy, very pink.', cap: '#8e1b3a', label: '#b8264a', ink: CREAM },
+  { id: 'green', no: '03', name: 'Green Tide', blend: 'spirulina, lime, mint, a pinch of sea salt', note: 'Sea-green and properly zingy.', cap: '#2f7d5b', label: '#4c9a6a', ink: CREAM },
+  { id: 'citrus', no: '04', name: 'Citrus Kick', blend: 'lemon, lime, orange, a little cayenne', note: 'Sour first, then the kick.', cap: '#e3c22a', label: '#f4d23c', ink: JAM }
+];
+// hero pile: centre point, rotation, flavour
+var PILE = [
+  { cx: 250, cy: 120, rot: -90, s: 0 },
+  { cx: 240, cy: 235, rot: 90, s: 1 },
+  { cx: 232, cy: 350, rot: -86, s: 2 },
+  { cx: 230, cy: 466, rot: -92, s: 3 },
+  { cx: 432, cy: 300, rot: 4, s: 0 },
+  { cx: 430, cy: 470, rot: 80, s: 1 }
+];
+var DRIPS = [
+  { x: 136, y: 150, s: 0, d: 1.2 },
+  { x: 118, y: 384, s: 2, d: 2.0 },
+  { x: 116, y: 500, s: 3, d: 2.7 }
+];
+var MARQUEE = ['turmeric', 'beetroot', 'lime', 'lemon', 'ginger', 'spirulina', 'black pepper', 'coming soon'];
+function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+class Component extends DCLogic {
+  state = { now: Date.now(), email: '', picks: [], signed: false, err: '' };
+
+  componentDidMount() {
+    var self = this;
+    this._i = setInterval(function () { self.setState({ now: Date.now() }); }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this._i); }
+
+  renderVals() {
+    var self = this, s = this.state;
+    var launchStr = this.props.launchDate ?? '2026-12-01T08:00:00+02:00';
+    var launch = new Date(launchStr);
+    var valid = !isNaN(launch.getTime());
+    var diff = valid ? Math.max(0, launch.getTime() - s.now) : 0;
+    var secs = Math.floor(diff / 1000);
+    var parts = [
+      { value: String(Math.floor(secs / 86400)), label: 'DAYS' },
+      { value: pad(Math.floor(secs / 3600) % 24), label: 'HOURS' },
+      { value: pad(Math.floor(secs / 60) % 60), label: 'MINS' },
+      { value: pad(secs % 60), label: 'SECS' }
+    ];
+    var countdown = parts.map(function (p, i) { return { value: p.value, label: p.label, cls: i === 3 ? (secs % 2 ? 'tt-tickA' : 'tt-tickB') : '' }; });
+    var launchLabel = valid ? launch.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase() : '[LAUNCH DATE]';
+
+    var heroBottles = PILE.map(function (b, i) {
+      var sh = SHOTS[b.s];
+      return { left: (b.cx - 55) + 'px', top: (b.cy - 117) + 'px', rot: b.rot + 'deg', delay: (i * 0.14) + 's', rockDelay: (-i * 0.6) + 's', cap: sh.cap, label: sh.label, ink: sh.ink };
+    });
+    var drips = DRIPS.map(function (d) { return { left: d.x + 'px', top: d.y + 'px', delay: d.d + 's', color: SHOTS[d.s].label }; });
+
+    var shots = SHOTS.map(function (sh, i) {
+      return { no: sh.no, name: sh.name, blend: sh.blend, note: sh.note, cap: sh.cap, label: sh.label, ink: sh.ink, panel: i % 2 ? SEA : BUTTER, delay: (i * 100) + 'ms', bottleAria: sh.name + ' shot bottle' };
+    });
+
+    var pickOpts = SHOTS.map(function (sh) {
+      var sel = s.picks.indexOf(sh.id) >= 0;
+      return { label: sh.name, cap: sh.cap, selected: sel ? 'true' : 'false', bg: sel ? JAM : CREAM, fg: sel ? CREAM : JAM, pick: function () {
+        var p = self.state.picks.slice(), k = p.indexOf(sh.id);
+        if (k >= 0) p.splice(k, 1); else p.push(sh.id);
+        self.setState({ picks: p });
+      } };
+    });
+
+    var chosen = SHOTS.filter(function (sh) { return s.picks.indexOf(sh.id) >= 0; }).map(function (sh) { return sh.name; });
+    var thanks = 'We’ll email ' + s.email.trim() + ' the day the shot bar opens.' + (chosen.length ? ' We’ll keep a ' + chosen.join(' and a ') + ' cold for you.' : '');
+
+    return {
+      countdown: countdown, launchLabel: launchLabel,
+      timerAria: 'Launch in ' + parts[0].value + ' days, ' + parts[1].value + ' hours, ' + parts[2].value + ' minutes',
+      heroBottles: heroBottles, drips: drips, shots: shots,
+      marquee: MARQUEE.concat(MARQUEE),
+      email: s.email, onEmail: function (e) { self.setState({ email: e.target.value, err: '' }); },
+      pickOpts: pickOpts, hasErr: !!s.err, err: s.err,
+      signed: s.signed, notSigned: !s.signed, thanks: thanks,
+      submit: function (e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var v = self.state.email.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { self.setState({ err: 'That email doesn’t look quite right.' }); return; }
+        self.setState({ signed: true, err: '' });
+      },
+      reset: function () { self.setState({ signed: false, email: '', picks: [] }); }
+    };
+  }
+}
+
+ttMount(Component);
+</script>
+</body>
+</html>

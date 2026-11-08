@@ -1,0 +1,1413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4e4a6">
+<title>toast&amp;tide · order online</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&amp;family=Work+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#f4e4a6}
+*{box-sizing:border-box}
+a{color:#7b1e2e}a:hover{color:#5a1420}
+button{font-family:inherit;cursor:pointer}
+button:disabled{cursor:not-allowed}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #7b1e2e;outline-offset:3px}
+@keyframes tt-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tt-marquee{animation:tt-marquee 30s linear infinite}
+@keyframes tt-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.tt-bob{animation:tt-bob 3.4s ease-in-out infinite}
+.tt-bob2{animation:tt-bob 3.4s ease-in-out -1.7s infinite}
+@keyframes tt-spin{to{transform:rotate(360deg)}}
+.tt-spin{animation:tt-spin 26s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes tt-wobble{0%,100%{transform:rotate(var(--r,-6deg))}50%{transform:rotate(calc(var(--r,-6deg) * -1))}}
+.tt-sticker{animation:tt-wobble 4.2s ease-in-out infinite}
+@keyframes tt-pop{0%,52%,100%{transform:translateY(74px)}64%{transform:translateY(-50px)}74%{transform:translateY(-26px)}84%{transform:translateY(-36px)}92%{transform:translateY(-30px)}}
+.tt-pop1{animation:tt-pop 3.8s cubic-bezier(.3,1.4,.5,1) infinite}
+.tt-pop2{animation:tt-pop 3.8s cubic-bezier(.3,1.4,.5,1) .14s infinite}
+@keyframes tt-shake{0%,48%,62%,100%{transform:rotate(0)}52%{transform:rotate(-2deg)}56%{transform:rotate(2deg)}}
+.tt-shake{animation:tt-shake 3.8s ease-in-out infinite;transform-origin:50% 100%;transform-box:fill-box}
+.tt-card{transition:transform .4s cubic-bezier(.3,1.7,.5,1)}
+.tt-card:hover{transform:translateY(-8px) rotate(-1.4deg)}
+@keyframes tt-wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+.tt-card:hover .tt-doodle{animation:tt-wiggle .6s ease-in-out}
+.tt-press{transition:transform .25s cubic-bezier(.3,1.8,.5,1)}
+.tt-press:hover{transform:scale(1.05) rotate(-1deg)}
+.tt-press:active{transform:scale(.94)}
+@keyframes tt-bumpA{0%{transform:scale(1)}40%{transform:scale(1.6) rotate(-12deg)}100%{transform:scale(1)}}
+@keyframes tt-bumpB{0%{transform:scale(1)}40%{transform:scale(1.6) rotate(12deg)}100%{transform:scale(1)}}
+.tt-bumpA{animation:tt-bumpA .5s cubic-bezier(.3,1.6,.5,1)}
+.tt-bumpB{animation:tt-bumpB .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes tt-drop{0%{opacity:0;transform:translateY(-110px) rotate(0)}65%{opacity:1;transform:translateY(8px) rotate(var(--r))}100%{opacity:1;transform:translateY(0) rotate(var(--r))}}
+.tt-layer{animation:tt-drop .6s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes tt-slide{from{transform:translateX(105%)}to{transform:translateX(0)}}
+.tt-drawer{animation:tt-slide .5s cubic-bezier(.2,1.15,.4,1)}
+@keyframes tt-fade{from{opacity:0}to{opacity:1}}
+.tt-fade{animation:tt-fade .3s ease-out}
+@keyframes tt-rise{from{opacity:0;transform:translateY(36px) rotate(2deg)}to{opacity:1;transform:none}}
+.tt-rise{animation:tt-rise .7s cubic-bezier(.2,1.2,.3,1) both}
+@keyframes tt-jump{0%,100%{transform:translateY(0) rotate(-4deg)}40%{transform:translateY(-34px) rotate(6deg)}60%{transform:translateY(-34px) rotate(6deg)}}
+.tt-jump{animation:tt-jump 1.3s cubic-bezier(.3,1.5,.5,1) infinite}
+@keyframes tt-flash{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08) rotate(-3deg);opacity:1}100%{transform:scale(1) rotate(-3deg);opacity:1}}
+.tt-flash{animation:tt-flash .45s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes tt-knife{0%{transform:translate(40px,68px)}40%{transform:translate(112px,68px)}48%{transform:translate(40px,92px)}88%{transform:translate(112px,92px)}100%{transform:translate(40px,68px)}}
+.tt-knife{animation:tt-knife 3.2s ease-in-out infinite}
+@keyframes tt-spreadA{0%{stroke-dashoffset:84}40%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:84}}
+@keyframes tt-spreadB{0%,48%{stroke-dashoffset:84}88%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:84}}
+.tt-spreadA{stroke-dasharray:84;animation:tt-spreadA 3.2s ease-in-out infinite}
+.tt-spreadB{stroke-dasharray:84;animation:tt-spreadB 3.2s ease-in-out infinite}
+@keyframes tt-loaf{0%{transform:scaleY(.45)}60%,85%{transform:scaleY(1)}100%{transform:scaleY(.45)}}
+.tt-loaf{animation:tt-loaf 4s ease-in-out infinite;transform-origin:50% 100%;transform-box:fill-box}
+@keyframes tt-heat{0%{transform:translateY(8px);opacity:0}30%{opacity:1}100%{transform:translateY(-12px);opacity:0}}
+.tt-heat1{animation:tt-heat 2.4s ease-out infinite}
+.tt-heat2{animation:tt-heat 2.4s ease-out .8s infinite;opacity:0}
+.tt-heat3{animation:tt-heat 2.4s ease-out 1.6s infinite;opacity:0}
+@keyframes tt-blink{0%,100%{opacity:1}50%{opacity:.15}}
+.tt-blink{animation:tt-blink 1s steps(1) infinite}
+@keyframes tt-fall{0%{transform:translateY(0);opacity:0}10%{opacity:1}75%{transform:translateY(56px);opacity:1}85%,100%{transform:translateY(56px);opacity:0}}
+.tt-fall1{animation:tt-fall 1.8s ease-in infinite}
+.tt-fall2{animation:tt-fall 1.8s ease-in .45s infinite;opacity:0}
+.tt-fall3{animation:tt-fall 1.8s ease-in .9s infinite;opacity:0}
+.tt-fall4{animation:tt-fall 1.8s ease-in 1.35s infinite;opacity:0}
+@keyframes tt-tilt{0%,100%{transform:rotate(-28deg)}50%{transform:rotate(-44deg)}}
+.tt-tilt{animation:tt-tilt 1.8s ease-in-out infinite;transform-origin:0% 100%;transform-box:fill-box}
+@keyframes tt-pour{0%{stroke-dashoffset:44;opacity:1}20%,70%{stroke-dashoffset:0;opacity:1}85%,100%{stroke-dashoffset:0;opacity:0}}
+.tt-pour{stroke-dasharray:44;animation:tt-pour 4s linear infinite}
+@keyframes tt-level{0%,15%{transform:translateY(26px)}75%,100%{transform:translateY(0)}}
+.tt-level{animation:tt-level 4s ease-in-out infinite}
+@keyframes tt-steam{0%,70%{opacity:0;transform:translateY(6px)}85%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+.tt-steam{animation:tt-steam 4s ease-out infinite;opacity:0}
+@keyframes tt-chop{0%,100%{transform:translateY(0)}40%,55%{transform:translateY(34px)}}
+.tt-chop{animation:tt-chop 1.6s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes tt-slice{0%,50%{transform:translate(0,0) rotate(0);opacity:1}85%{transform:translate(28px,4px) rotate(16deg);opacity:1}100%{transform:translate(28px,4px) rotate(16deg);opacity:0}}
+.tt-slice{animation:tt-slice 1.6s ease-out infinite;transform-origin:0% 100%;transform-box:fill-box}
+.tt-blade{animation:tt-spin .35s linear infinite;transform-origin:center;transform-box:fill-box}
+@keyframes tt-jiggle{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(-3px,1px) rotate(-1.5deg)}50%{transform:translate(2px,-2px) rotate(1deg)}75%{transform:translate(3px,1px) rotate(1.5deg)}}
+.tt-jiggle{animation:tt-jiggle .18s linear infinite}
+@keyframes tt-whirl{0%{transform:rotate(var(--r)) scale(1);opacity:1}100%{transform:translateY(80px) rotate(540deg) scale(.2);opacity:0}}
+.tt-whirl{animation:tt-whirl 1.2s ease-in both}
+@keyframes tt-fillup{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.tt-fillup{animation:tt-fillup .7s cubic-bezier(.3,1.4,.5,1) both;transform-origin:50% 100%}
+@keyframes tt-slosh{0%,100%{transform:translateX(0)}50%{transform:translateX(-30px)}}
+.tt-slosh{animation:tt-slosh 1.2s ease-in-out infinite}
+.tt-grab{cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.tt-grab:active{cursor:grabbing}
+@media (pointer: coarse){.tt-grab{touch-action:pan-y}}
+.tt-plate{transition:box-shadow .2s ease,background-color .2s ease}
+@keyframes tt-hover{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.tt-ghost-in{animation:tt-hover .9s ease-in-out infinite}
+@keyframes tt-in{0%{opacity:0;transform:translateY(-80px)}65%{opacity:1;transform:translateY(5px)}100%{opacity:1;transform:none}}
+.tt-in{animation:tt-in .55s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes tt-sink{0%{transform:translateY(0)}100%{transform:translateY(96px)}}
+.tt-sink{animation:tt-sink .8s cubic-bezier(.6,0,.4,1) .2s both}
+@keyframes tt-popup{0%{transform:translateY(96px)}55%{transform:translateY(-40px)}78%{transform:translateY(-8px)}100%{transform:translateY(-16px)}}
+.tt-popup{animation:tt-popup .8s cubic-bezier(.3,1.3,.5,1) both}
+.tt-lever{transform:translateY(48px);transition:transform .3s ease}
+.tt-lever-up{transform:none;transition:transform .2s ease}
+@media (max-width: 640px){
+header,section[style*="padding"],footer>div{padding-left:20px !important;padding-right:20px !important}
+header>a:first-child{font-size:30px !important}
+header nav a{display:none !important}
+[style*="padding: 40px"]{padding:24px 18px !important}
+[role=tablist]{flex-wrap:nowrap !important;overflow-x:auto;width:calc(100% + 40px);margin:0 -20px;padding:4px 20px 10px;scrollbar-width:none}
+[role=tablist]::-webkit-scrollbar{display:none}
+[role=tablist] button{flex:0 0 auto;white-space:nowrap}
+h2[style*="font-size: 64px"]{font-size:44px !important}
+h2[style*="font-size: 56px"],h3[style*="font-size: 48px"]{font-size:38px !important}
+[style*="height: 520px"]{height:400px !important}
+[aria-label="A smiling toaster popping up two slices of toast"]{width:240px;height:210px;bottom:84px !important}
+.tt-marquee{font-size:24px !important}
+#menu{padding-top:56px !important}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<template id="tt-template">
+
+<div style="font-family: 'Work Sans', system-ui, sans-serif; color: #7b1e2e; background: #f4e4a6; min-height: 100vh; overflow-x: hidden">
+
+
+<a href="https://mirnaaboug.github.io/toast-tide/coming-soon.html" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 12px; padding: 10px 16px; background: #7b1e2e; color: #fff8e6; text-decoration: none; font-size: 14px; line-height: 20px; text-align: center">
+<span style="display: inline-block; padding: 2px 10px; border-radius: 9999px; background: #9cc5be; color: #5a1420; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">NEW</span>
+<span><strong>The shot bar is coming soon.</strong> Which shot are you? Take the quiz</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+
+
+<header style="padding: 20px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; max-width: 1360px; margin: 0 auto">
+<a href="#top" style="text-decoration: none; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 36px; letter-spacing: -0.02em; color: #7b1e2e; line-height: 1">toast&amp;tide</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<a href="#menu" class="tt-press" style="display: inline-block; padding: 10px 18px; border-radius: 9999px; font-weight: 700; font-size: 16px; text-decoration: none">menu</a>
+<a href="#menu" onClick="{{goBuild}}" class="tt-press" style="display: inline-block; padding: 10px 18px; border-radius: 9999px; font-weight: 700; font-size: 16px; text-decoration: none">build a toast</a>
+<button type="button" class="tt-press" onClick="{{openCart}}" aria-label="{{cartAria}}" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 10px 8px 20px; border: 0; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-size: 16px; font-weight: 700">
+<span>your tray</span>
+<span class="{{bumpClass}}" style="display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 32px; padding: 0 8px; border-radius: 9999px; background: #f4e4a6; color: #7b1e2e; font-size: 14px">{{count}}</span>
+</button>
+</nav>
+</header>
+
+
+<section id="top" style="max-width: 1360px; margin: 0 auto; padding: 24px 40px 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
+<div class="tt-rise" style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 24px">
+<span class="tt-sticker" style="--r: -5deg; display: inline-block; padding: 8px 16px; border-radius: 9999px; background: #9cc5be; color: #5a1420; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">SOMA BAY · RED SEA · ORDER AHEAD</span>
+<h1 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: clamp(56px, 8vw, 104px); line-height: 0.95; letter-spacing: -0.02em">no toast left behind</h1>
+<p style="margin: 0; max-width: 520px; font-size: 18px; line-height: 28px">Build-your-own toast, a 100% gluten-free bakery and a Greek yogurt bar with house granola. Order here, skip the queue, get back to the beach.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<a href="#menu" class="tt-press" style="display: inline-flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 28px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-weight: 700; font-size: 17px; text-decoration: none">start your order
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a href="#menu" onClick="{{goBuild}}" class="tt-press" style="display: inline-flex; align-items: center; min-height: 56px; padding: 0 28px; border-radius: 9999px; border: 2px solid #7b1e2e; color: #7b1e2e; font-weight: 700; font-size: 17px; text-decoration: none">build a toast</a>
+</div>
+</div>
+
+<div style="flex: 1 1 440px; min-width: 0; position: relative; height: 520px; border-radius: 20px; background: #fff8e6; overflow: hidden">
+<svg class="tt-spin" style="position: absolute; top: 36px; right: 40px" width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" aria-hidden="true">
+<circle cx="60" cy="60" r="26"></circle>
+<path d="M60 10v14M60 96v14M10 60h14M96 60h14M25 25l10 10M85 85l10 10M95 25L85 35M35 85L25 95"></path>
+</svg>
+<span class="tt-sticker" style="--r: 8deg; position: absolute; top: 48px; left: 36px; display: inline-flex; align-items: center; justify-content: center; text-align: center; width: 132px; height: 132px; border-radius: 50%; background: #7b1e2e; color: #fff8e6; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 24px; line-height: 1; letter-spacing: -0.02em; padding: 16px">rise &amp; dine</span>
+<svg style="position: absolute; left: 50%; bottom: 92px; transform: translateX(-50%)" width="320" height="280" viewBox="0 0 320 280" fill="none" stroke="#7b1e2e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="A smiling toaster popping up two slices of toast">
+<g class="tt-pop1"><path fill="#fff8e6" d="M80 132V80c-8-3-12-12-6-20 6-8 20-10 36-10s30 2 36 10c6 8 2 17-6 20v52z"></path><path d="M96 74h28" stroke-width="4"></path></g>
+<g class="tt-pop2"><path fill="#fff8e6" d="M176 132V80c-8-3-12-12-6-20 6-8 20-10 36-10s30 2 36 10c6 8 2 17-6 20v52z"></path><path d="M192 74h28" stroke-width="4"></path></g>
+<g class="tt-shake">
+<path fill="#fff8e6" d="M46 120h228c18 0 26 12 26 30v86c0 18-8 24-26 24H46c-18 0-26-6-26-24v-86c0-18 8-30 26-30z"></path>
+<path d="M76 136h76M172 136h76"></path>
+<circle cx="120" cy="190" r="5" fill="#7b1e2e"></circle><circle cx="200" cy="190" r="5" fill="#7b1e2e"></circle>
+<path d="M134 210c14 14 38 14 52 0"></path>
+<path d="M300 168h14v18h-14"></path>
+<path d="M64 260v12M256 260v12"></path>
+</g>
+</svg>
+<svg class="tt-bob" style="position: absolute; left: -40px; bottom: 34px" width="560" height="56" viewBox="0 0 600 60" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="M0 30c50-20 100 20 150 0s100-20 150 0 100 20 150 0 100-20 150 0"></path></svg>
+<svg class="tt-bob2" style="position: absolute; left: -10px; bottom: 6px" width="560" height="56" viewBox="0 0 600 60" fill="none" stroke="#9cc5be" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="M0 30c50-20 100 20 150 0s100-20 150 0 100 20 150 0 100-20 150 0"></path></svg>
+<span class="tt-sticker" style="--r: -7deg; position: absolute; right: 28px; bottom: 118px; display: inline-block; padding: 8px 14px; border-radius: 9999px; background: #f4e4a6; border: 2px solid #7b1e2e; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.06em">HOT STUFF. HANDLE WITH HANDS.</span>
+</div>
+</section>
+
+
+<div style="background: #7b1e2e; color: #f4e4a6; overflow: hidden; padding: 18px 0" aria-hidden="true">
+<div class="tt-marquee" style="display: flex; width: max-content; gap: 40px; align-items: center; font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 32px; letter-spacing: -0.02em; white-space: nowrap">
+<sc-for list="{{marquee}}" as="m" hint-placeholder-count="10">
+<span style="display: inline-flex; align-items: center; gap: 40px">{{m}}<svg width="44" height="20" viewBox="0 0 44 20" fill="none" stroke="#f4e4a6" stroke-width="3" stroke-linecap="round"><path d="M2 10c5-7 10 7 15 0s10-7 15 0 7 5 10 0"></path></svg></span>
+</sc-for>
+</div>
+</div>
+
+
+<section id="menu" style="max-width: 1360px; margin: 0 auto; padding: 88px 40px 64px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: -0.02em">what's cooking</h2>
+<div role="tablist" aria-label="Stations" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" role="tab" aria-selected="{{t.selected}}" class="tt-press" onClick="{{t.pick}}" style="min-height: 48px; padding: 0 20px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{t.bg}}; color: {{t.fg}}; font-size: 15px; font-weight: 700">{{t.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="1">
+<sc-if value="{{g.show}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<sc-if value="{{g.hasIntro}}" hint-placeholder-val="{{true}}">
+<div class="tt-rise" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+<p style="margin: 0; flex: 1 1 320px; max-width: 640px; font-size: 18px; line-height: 28px">{{g.intro}}</p>
+<div style="flex: 0 0 auto; width: 240px; height: 168px; border-radius: 20px; border: 2px solid #7b1e2e; background: {{g.panelBg}}; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<sc-if value="{{g.isToast}}" hint-placeholder-val="{{true}}">
+<svg role="img" aria-label="A knife spreading jam on toast" width="200" height="140" viewBox="0 0 200 140" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path fill="#f4e4a6" d="M44 134V74c-12-4-16-16-8-26 8-10 28-14 64-14s56 4 64 14c8 10 4 22-8 26v60z"></path>
+<path class="tt-spreadA" d="M58 78h84" stroke-width="12"></path>
+<path class="tt-spreadB" d="M58 102h84" stroke-width="12"></path>
+<g class="tt-knife"><path fill="#fff8e6" d="M2 -8h50v12H8z"></path><path d="M54 -2h30" stroke-width="10"></path></g>
+</svg>
+</sc-if>
+<sc-if value="{{g.isGf}}" hint-placeholder-val="{{false}}">
+<svg role="img" aria-label="A loaf rising in the gluten-free oven" width="200" height="140" viewBox="0 0 200 140" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path class="tt-heat1" d="M72 20c-5-5 5-9 0-14"></path>
+<path class="tt-heat2" d="M100 20c-5-5 5-9 0-14"></path>
+<path class="tt-heat3" d="M128 20c-5-5 5-9 0-14"></path>
+<rect x="28" y="24" width="144" height="112" rx="14" fill="#fff8e6"></rect>
+<path d="M28 46h144"></path>
+<circle cx="48" cy="35" r="4"></circle><circle cx="64" cy="35" r="4"></circle>
+<circle class="tt-blink" cx="152" cy="35" r="4" fill="#7b1e2e"></circle>
+<rect x="48" y="56" width="104" height="60" rx="10" fill="#f4e4a6"></rect>
+<g class="tt-loaf"><path fill="#fff8e6" d="M64 112v-12c0-14 16-22 36-22s36 8 36 22v12z"></path><path d="M86 88l4 8M100 85l4 8M114 88l3 7" stroke-width="3"></path></g>
+<path d="M64 126h72" stroke-width="5"></path>
+</svg>
+</sc-if>
+<sc-if value="{{g.isYogurt}}" hint-placeholder-val="{{false}}">
+<svg role="img" aria-label="House granola pouring into a bowl of yogurt" width="200" height="140" viewBox="0 0 200 140" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<g class="tt-tilt"><path fill="#fff8e6" d="M120 42V16h36v26z"></path><path d="M116 16h44"></path></g>
+<circle class="tt-fall1" cx="100" cy="32" r="4" fill="#7b1e2e" stroke="none"></circle>
+<rect class="tt-fall2" x="106" y="28" width="7" height="7" rx="2" fill="#7b1e2e" stroke="none"></rect>
+<circle class="tt-fall3" cx="94" cy="30" r="5" fill="#fff8e6" stroke-width="3"></circle>
+<circle class="tt-fall4" cx="110" cy="34" r="3.5" fill="#7b1e2e" stroke="none"></circle>
+<path fill="#fff8e6" d="M36 88h128c0 28-28 46-64 46S36 116 36 88z"></path>
+<path d="M48 88c10-6 22-6 32 0s22 6 32 0 22-6 32 0"></path>
+</svg>
+</sc-if>
+<sc-if value="{{g.isDrinks}}" hint-placeholder-val="{{false}}">
+<svg role="img" aria-label="Coffee pouring into a cup" width="200" height="140" viewBox="0 0 200 140" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path fill="#f4e4a6" d="M76 6h48v20H76z"></path>
+<path d="M92 26v4M108 26v4"></path>
+<path class="tt-pour" d="M100 30v44" stroke-width="5"></path>
+<path class="tt-steam" d="M78 62c-4-4 4-8 0-12M122 62c-4-4 4-8 0-12"></path>
+<path fill="#fff8e6" d="M60 70h80v30c0 18-16 30-40 30s-40-12-40-30z"></path>
+<path d="M140 80c14 0 14 22 0 22"></path>
+<path class="tt-level" d="M68 82c10-4 21 4 32 0s21-4 32 0"></path>
+</svg>
+</sc-if>
+<sc-if value="{{g.isSmoothie}}" hint-placeholder-val="{{false}}">
+<svg role="img" aria-label="Fruit dropping into a spinning blender" width="200" height="140" viewBox="0 0 200 140" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<defs><clipPath id="tt-jarclip"><path d="M72 16h56l-8 78H80z"></path></clipPath></defs>
+<path d="M66 14h68" stroke-width="6"></path>
+<path fill="#fff8e6" d="M70 16h60l-8 80H78z"></path>
+<g clip-path="url(#tt-jarclip)"><path class="tt-slosh" fill="#9cc5be" d="M40 64c10-6 20 6 30 0s20-6 30 0 20 6 30 0 20-6 30 0 20 6 30 0V100H40z"></path></g>
+<circle class="tt-fall1" cx="92" cy="8" r="6" fill="#fff8e6" stroke-width="3"></circle>
+<circle class="tt-fall3" cx="108" cy="4" r="5" fill="#7b1e2e" stroke="none"></circle>
+<rect class="tt-fall2" x="99" y="2" width="8" height="8" rx="2" fill="#f4e4a6" stroke-width="3"></rect>
+<g class="tt-blade"><path d="M88 86h24M100 80v12"></path></g>
+<path fill="#7b1e2e" d="M72 96h56l8 32H64z"></path>
+<circle cx="88" cy="112" r="4" fill="#f4e4a6" stroke="none"></circle><circle cx="100" cy="112" r="4" fill="#f4e4a6" stroke="none"></circle><circle cx="112" cy="112" r="4" fill="#f4e4a6" stroke="none"></circle>
+</svg>
+</sc-if>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{g.isSmoothie}}" hint-placeholder-val="{{false}}">
+<div class="tt-rise" style="border-radius: 20px; background: #fff8e6; border: 2px solid #7b1e2e; padding: 40px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">THE BLENDER</span>
+<h3 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 48px; line-height: 1; letter-spacing: -0.02em">build your superfood smoothie</h3>
+</div>
+<sc-for list="{{g.sm.steps}}" as="sst" hint-placeholder-count="4">
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 12px">
+<legend style="padding: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #7b1e2e; color: #fff8e6; font-size: 14px">{{sst.n}}</span>{{sst.title}}<span style="font-size: 13px; font-weight: 400">{{sst.hint}}</span></legend>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{sst.options}}" as="so" hint-placeholder-count="4">
+<button type="button" class="tt-press" onClick="{{so.pick}}" disabled="{{so.disabled}}" aria-pressed="{{so.selected}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{so.bg}}; color: {{so.fg}}; opacity: {{so.opacity}}; font-size: 15px; font-weight: 700">{{so.label}}<span style="font-size: 13px; font-weight: 400">{{so.extra}}</span></button>
+</sc-for>
+</div>
+</fieldset>
+</sc-for>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 24px">
+<div class="{{g.sm.jarClass}}" style="display: flex; flex-direction: column; align-items: center">
+<div style="width: 200px; height: 20px; border-radius: 10px 10px 4px 4px; background: #7b1e2e"></div>
+<div style="position: relative; width: 240px; height: 320px; border: 3px solid #7b1e2e; border-top: 0; border-radius: 0 0 48px 48px; background: #fff8e6; overflow: hidden">
+<div style="position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); width: 64px; height: 28px">
+<svg width="64" height="28" viewBox="0 0 64 28" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" aria-hidden="true"><g class="{{g.sm.bladeClass}}"><path d="M8 14h48M32 4v20"></path></g></svg>
+</div>
+<sc-if value="{{g.sm.showLayers}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; top: 16px; bottom: 44px; display: flex; flex-direction: column-reverse; align-items: center; gap: 6px">
+<sc-for list="{{g.sm.layers}}" as="sl" hint-placeholder-count="4">
+<span class="{{sl.cls}}" style="--r: {{sl.rot}}; display: inline-block; padding: 8px 18px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{sl.bg}}; color: {{sl.fg}}; font-size: 15px; font-weight: 700; white-space: nowrap">{{sl.label}}</span>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{g.sm.blended}}" hint-placeholder-val="{{false}}">
+<div class="tt-fillup" style="position: absolute; left: 0; right: 0; bottom: 0; height: 78%; background: {{g.sm.color}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0 20px; text-align: center; color: {{g.sm.ink}}">
+<svg style="position: absolute; top: -14px; left: 0" width="240" height="16" viewBox="0 0 240 16" aria-hidden="true"><path class="tt-slosh" fill="{{g.sm.color}}" d="M0 8c15-8 30 8 45 0s30-8 45 0 30 8 45 0 30-8 45 0 30 8 45 0 30-8 45 0V16H0z"></path></svg>
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">SMOOTH.</span>
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 32px; letter-spacing: -0.02em; line-height: 1.05">{{g.sm.mixName}}</span>
+<span style="font-size: 13px; line-height: 18px; font-weight: 500">{{g.sm.mixList}}</span>
+<span style="font-size: 13px; line-height: 18px">{{g.sm.sizeLabel}} · ready to sip</span>
+</div>
+</sc-if>
+</div>
+<div style="width: 280px; height: 72px; margin-top: -2px; border-radius: 12px 12px 20px 20px; background: #7b1e2e; display: flex; align-items: center; justify-content: center; gap: 14px">
+<span style="width: 14px; height: 14px; border-radius: 50%; background: #f4e4a6"></span><span style="width: 26px; height: 26px; border-radius: 50%; border: 3px solid #f4e4a6"></span><span style="width: 14px; height: 14px; border-radius: 50%; background: #9cc5be"></span>
+</div>
+</div>
+<div style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 13px; line-height: 18px">your smoothie</span>
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 32px; letter-spacing: -0.02em; line-height: 1.1">{{g.sm.priceText}}</span>
+<span style="font-size: 13px; line-height: 18px">{{g.sm.eurText}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" class="tt-press" onClick="{{g.sm.blend}}" style="min-height: 52px; padding: 0 22px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #9cc5be; color: #5a1420; font-size: 16px; font-weight: 700">{{g.sm.blendLabel}}</button>
+<sc-if value="{{g.sm.addedFlash}}" hint-placeholder-val="{{false}}">
+<button type="button" class="tt-flash" onClick="{{g.sm.add}}" style="min-height: 52px; padding: 0 22px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #f4e4a6; color: #7b1e2e; font-size: 16px; font-weight: 700">on your tray!</button>
+</sc-if>
+<sc-if value="{{g.sm.addIdle}}" hint-placeholder-val="{{true}}">
+<button type="button" class="tt-press" onClick="{{g.sm.add}}" style="min-height: 52px; padding: 0 22px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #7b1e2e; color: #fff8e6; font-size: 16px; font-weight: 700">add to my tray</button>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{g.isYogurt}}" hint-placeholder-val="{{false}}">
+<div class="tt-rise" style="border-radius: 20px; background: #fff8e6; border: 2px solid #7b1e2e; padding: 40px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">LOW TIDE YOGURT BAR</span>
+<h3 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 48px; line-height: 1; letter-spacing: -0.02em">build your bowl</h3>
+</div>
+<sc-for list="{{g.yb.steps}}" as="yst" hint-placeholder-count="5">
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 12px">
+<legend style="padding: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #7b1e2e; color: #fff8e6; font-size: 14px">{{yst.n}}</span>{{yst.title}}<span style="font-size: 13px; font-weight: 400">{{yst.hint}}</span></legend>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{yst.options}}" as="yo" hint-placeholder-count="4">
+<button type="button" class="tt-press" onClick="{{yo.pick}}" disabled="{{yo.disabled}}" aria-pressed="{{yo.selected}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{yo.bg}}; color: {{yo.fg}}; opacity: {{yo.opacity}}; font-size: 15px; font-weight: 700">{{yo.label}}<span style="font-size: 13px; font-weight: 400">{{yo.extra}}</span></button>
+</sc-for>
+</div>
+</fieldset>
+</sc-for>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="position: relative; width: 100%; height: 440px; border-radius: 20px; background: #9cc5be; overflow: hidden">
+<svg style="position: absolute; top: 8px; left: 50%; transform: translateX(-50%)" width="160" height="96" viewBox="0 0 200 120" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<g class="tt-tilt"><path fill="#fff8e6" d="M120 42V16h36v26z"></path><path d="M116 16h44"></path></g>
+<circle class="tt-fall1" cx="100" cy="32" r="4" fill="#7b1e2e" stroke="none"></circle>
+<rect class="tt-fall2" x="106" y="28" width="7" height="7" rx="2" fill="#7b1e2e" stroke="none"></rect>
+<circle class="tt-fall3" cx="94" cy="30" r="5" fill="#fff8e6" stroke-width="3"></circle>
+<circle class="tt-fall4" cx="110" cy="34" r="3.5" fill="#7b1e2e" stroke="none"></circle>
+</svg>
+<div style="position: absolute; left: 0; right: 0; top: 96px; bottom: 132px; display: flex; flex-direction: column-reverse; align-items: center; gap: 6px">
+<sc-for list="{{g.yb.layers}}" as="yl" hint-placeholder-count="4">
+<span class="tt-layer" style="--r: {{yl.rot}}; display: inline-block; padding: 8px 18px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{yl.bg}}; color: {{yl.fg}}; font-size: 15px; font-weight: 700; white-space: nowrap">{{yl.label}}</span>
+</sc-for>
+</div>
+<svg style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%)" width="300" height="150" viewBox="0 0 200 100" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Your bowl">
+<path fill="#fff8e6" d="M10 20h180c0 44-40 72-90 72S10 64 10 20z"></path>
+<path d="M4 20h192"></path>
+</svg>
+<span style="position: absolute; bottom: 64px; left: 50%; transform: translateX(-50%); font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 24px; letter-spacing: -0.02em; white-space: nowrap">{{g.yb.baseLabel}}</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 13px; line-height: 18px">your bowl</span>
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 32px; letter-spacing: -0.02em; line-height: 1.1">{{g.yb.priceText}}</span>
+<span style="font-size: 13px; line-height: 18px">{{g.yb.eurText}}</span>
+</div>
+<sc-if value="{{g.yb.addedFlash}}" hint-placeholder-val="{{false}}">
+<button type="button" class="tt-flash" onClick="{{g.yb.add}}" style="min-height: 56px; padding: 0 28px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #9cc5be; color: #5a1420; font-size: 17px; font-weight: 700">scooping! add another?</button>
+</sc-if>
+<sc-if value="{{g.yb.addIdle}}" hint-placeholder-val="{{true}}">
+<button type="button" class="tt-press" onClick="{{g.yb.add}}" style="min-height: 56px; padding: 0 28px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #7b1e2e; color: #fff8e6; font-size: 17px; font-weight: 700">add to my tray</button>
+</sc-if>
+</div>
+</div>
+</div>
+<h3 style="margin: 16px 0 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 32px; line-height: 1.1; letter-spacing: -0.02em">or grab a house favourite</h3>
+</sc-if>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px">
+<sc-for list="{{g.items}}" as="item" hint-placeholder-count="3">
+<article class="tt-rise" style="animation-delay: {{item.delay}}">
+<div class="tt-card" style="height: 100%; display: flex; flex-direction: column; gap: 16px; padding: 24px; border-radius: 20px; background: {{item.bg}}; border: 2px solid #7b1e2e">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; min-height: 72px">
+<div class="tt-doodle" style="width: 72px; height: 72px">
+<sc-if value="{{item.dToast}}" hint-placeholder-val="{{true}}"><svg width="72" height="72" viewBox="0 0 64 64" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 54V28c-6-2-8-8-4-13 4-6 12-7 22-7s18 1 22 7c4 5 2 11-4 13v26z"></path><path d="M24 34h2M36 40h2M30 46h2"></path></svg></sc-if>
+<sc-if value="{{item.dBowl}}" hint-placeholder-val="{{false}}"><svg width="72" height="72" viewBox="0 0 64 64" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 30h48c0 14-10 24-24 24S8 44 8 30z"></path><path d="M20 24c2-4 6-4 8 0M32 22c2-4 6-4 8 0"></path><path d="M44 30L54 10"></path></svg></sc-if>
+<sc-if value="{{item.dLoaf}}" hint-placeholder-val="{{false}}"><svg width="72" height="72" viewBox="0 0 64 64" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 48V34c0-12 10-18 24-18s24 6 24 18v14z"></path><path d="M22 22l5 9M32 20l5 9M42 22l4 8"></path></svg></sc-if>
+<sc-if value="{{item.dCup}}" hint-placeholder-val="{{false}}"><svg width="72" height="72" viewBox="0 0 64 64" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 24h32v16c0 8-6 14-16 14s-16-6-16-14z"></path><path d="M46 29c8 0 8 11 0 11"></path><path d="M24 8c-4 4 4 6 0 10M34 8c-4 4 4 6 0 10"></path></svg></sc-if>
+</div>
+<sc-if value="{{item.gf}}" hint-placeholder-val="{{false}}">
+<span class="tt-sticker" style="--r: 9deg; display: inline-flex; align-items: center; justify-content: center; text-align: center; width: 72px; height: 72px; border-radius: 50%; background: #9cc5be; border: 2px solid #7b1e2e; color: #5a1420; font-size: 11px; line-height: 13px; font-weight: 700; letter-spacing: 0.06em">GLUTEN-FREE</span>
+</sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; flex: 1">
+<h3 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700">{{item.name}}</h3>
+<p style="margin: 0; font-size: 16px; line-height: 24px">{{item.desc}}</p>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="font-size: 14px; line-height: 18px; font-weight: 500; color: {{item.priceColor}}">{{item.priceText}}</span>
+<sc-if value="{{item.isAdded}}" hint-placeholder-val="{{false}}">
+<button type="button" class="tt-flash" onClick="{{item.add}}" style="min-height: 44px; padding: 0 18px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #f4e4a6; color: #7b1e2e; font-size: 15px; font-weight: 700">on your tray!</button>
+</sc-if>
+<sc-if value="{{item.notAdded}}" hint-placeholder-val="{{true}}">
+<button type="button" class="tt-press" onClick="{{item.add}}" aria-label="{{item.addAria}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 18px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #7b1e2e; color: #fff8e6; font-size: 15px; font-weight: 700">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>add</button>
+</sc-if>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</sc-for>
+</section>
+
+
+<sc-if value="{{showBuilder}}" hint-placeholder-val="{{false}}">
+<section id="build" class="tt-rise" style="max-width: 1360px; margin: 0 auto; padding: 0 40px 96px">
+<div style="border-radius: 20px; background: #fff8e6; border: 2px solid #7b1e2e; padding: 40px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">THE TOAST BAR</span>
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 56px; line-height: 1; letter-spacing: -0.02em">build your toast</h2>
+</div>
+<div style="flex: 0 0 auto; width: 220px; height: 150px; border-radius: 20px; border: 2px solid #7b1e2e; background: #f4e4a6; display: flex; align-items: center; justify-content: center; overflow: hidden">
+<svg role="img" aria-label="A knife slicing a fresh loaf" width="180" height="130" viewBox="0 0 170 136" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<path fill="#fff8e6" d="M14 128V96c0-20 18-32 50-32s50 12 50 32v32z"></path>
+<path d="M40 76l6 10M62 72l6 10M84 76l5 9" stroke-width="3"></path>
+<g class="tt-slice"><path fill="#fff8e6" d="M136 128V72c10 4 16 12 16 24v32z"></path></g>
+<g class="tt-chop"><path fill="#fff8e6" d="M120 30h10v44l-10 6z"></path><path d="M125 8v20" stroke-width="10"></path></g>
+</svg>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 8px">
+<p style="margin: 0; font-size: 16px; line-height: 24px">Too sleepy to choose?</p>
+<button type="button" class="tt-press" onClick="{{surprise}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #9cc5be; color: #5a1420; font-size: 15px; font-weight: 700">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h3c5 0 7 10 12 10h3M3 17h3c2 0 3.5-1.5 5-3.5M14 9.5C15.5 8 17 7 18 7h3M18 4l3 3-3 3M18 14l3 3-3 3"></path></svg>surprise me</button>
+</div>
+<p style="margin: 0; display: flex; align-items: center; gap: 10px; font-size: 15px; line-height: 22px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10M12 10V4.5a1.5 1.5 0 0 1 3 0V10M15 10V6.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7-3 0-4.5-1.5-6-4l-2-3.5a1.5 1.5 0 0 1 2.5-1.6L9 14"></path></svg>
+<span>Grab an ingredient and drop it on your toast, or just tap it. Drag a topping off the toast to take it back.</span></p>
+</div>
+
+<sc-for list="{{steps}}" as="st" hint-placeholder-count="4">
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 12px">
+<legend style="padding: 0; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #7b1e2e; color: #fff8e6; font-size: 14px">{{st.n}}</span>{{st.title}}<span style="font-size: 13px; font-weight: 400">{{st.hint}}</span></legend>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{st.options}}" as="o" hint-placeholder-count="4">
+<button type="button" class="tt-press tt-grab" onClick="{{o.pick}}" onPointerDown="{{o.grab}}" disabled="{{o.disabled}}" aria-pressed="{{o.selected}}" aria-label="{{o.aria}}" style="width: 120px; display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 6px 6px 8px; border-radius: 16px; border: 2px solid #7b1e2e; background: {{o.bg}}; color: {{o.fg}}; opacity: {{o.opacity}}; text-align: center">
+<span style="display: flex; align-items: center; justify-content: center; height: 42px; border-radius: 11px; background: #fff8e6">
+<svg width="100" height="26" viewBox="10 2 220 42" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path d="{{o.a1}}" fill="{{o.f1}}" stroke="{{o.s1}}" stroke-width="{{o.w1}}"></path>
+<path d="{{o.a2}}" fill="{{o.f2}}" stroke="{{o.s2}}" stroke-width="{{o.w2}}"></path>
+<path d="{{o.a3}}" fill="{{o.f3}}" stroke="{{o.s3}}" stroke-width="{{o.w3}}"></path>
+</svg>
+</span>
+<span style="font-size: 14px; line-height: 17px; font-weight: 700">{{o.label}}</span>
+<span style="font-size: 12px; line-height: 14px; font-weight: 400">{{o.extra}}</span>
+</button>
+</sc-for>
+</div>
+</fieldset>
+</sc-for>
+</div>
+
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 24px; align-items: stretch">
+<div id="tt-plate" class="tt-plate" style="position: relative; border-radius: 20px; background: {{plateBg}}; box-shadow: {{plateRing}}; height: 500px; overflow: hidden">
+<sc-if value="{{plateMsgShow}}" hint-placeholder-val="{{false}}">
+<span class="tt-flash" role="status" style="position: absolute; top: 14px; left: 50%; margin-left: -150px; width: 300px; z-index: 5; text-align: center; padding: 8px 14px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-size: 14px; line-height: 18px; font-weight: 700">{{plateMsg}}</span>
+</sc-if>
+<sc-if value="{{plateHintShow}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; top: 14px; left: 50%; margin-left: -130px; width: 260px; z-index: 5; text-align: center; padding: 8px 14px; border-radius: 9999px; border: 2px dashed #7b1e2e; background: #fff8e6; color: #7b1e2e; font-size: 14px; line-height: 18px; font-weight: 700">{{plateHint}}</span>
+</sc-if>
+
+<sc-if value="{{showPlate}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; bottom: 26px; padding: 0 18px; display: flex; flex-direction: column; align-items: flex-start">
+<div style="width: 100%; display: flex; flex-direction: column-reverse; align-items: stretch; position: relative; z-index: 1">
+<sc-for list="{{stack}}" as="l" hint-placeholder-count="4">
+<div class="tt-in" onPointerDown="{{l.grab}}" title="{{l.title}}" style="position: relative; z-index: {{l.z}}; margin-bottom: {{l.overlap}}; opacity: {{l.opacity}}; cursor: {{l.cursor}}; touch-action: {{l.touch}}; user-select: none; -webkit-user-select: none; display: flex; align-items: center; gap: 8px">
+<svg viewBox="0 0 240 44" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 62%; max-width: 250px; height: auto; flex: none; overflow: visible">
+<path d="{{l.a1}}" fill="{{l.f1}}" stroke="{{l.s1}}" stroke-width="{{l.w1}}"></path>
+<path d="{{l.a2}}" fill="{{l.f2}}" stroke="{{l.s2}}" stroke-width="{{l.w2}}"></path>
+<path d="{{l.a3}}" fill="{{l.f3}}" stroke="{{l.s3}}" stroke-width="{{l.w3}}"></path>
+</svg>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 16px; font-weight: 700"><span style="flex: none; width: 14px; height: 2px; background: #7b1e2e"></span>{{l.label}}</span>
+</div>
+</sc-for>
+</div>
+<svg viewBox="0 0 300 44" fill="none" stroke="#7b1e2e" stroke-width="3" aria-hidden="true" style="width: calc(62% + 40px); max-width: 290px; height: auto; margin: -16px 0 0 -20px">
+<ellipse cx="150" cy="20" rx="146" ry="18" fill="#fff8e6"></ellipse>
+<ellipse cx="150" cy="17" rx="104" ry="10" fill="none" stroke="#e6d9b5" stroke-width="2.5"></ellipse>
+</svg>
+<span style="margin-top: 6px; font-size: 13px; line-height: 18px">your plate · {{breadLabel}}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{showToaster}}" hint-placeholder-val="{{false}}">
+<div class="tt-fade" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 24px">
+<svg viewBox="0 0 300 290" width="300" role="img" aria-label="{{toasterAria}}" style="max-width: 88%; height: auto; overflow: visible" fill="none" stroke="#7b1e2e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+<text x="150" y="34" text-anchor="middle" opacity="{{dingOp}}" fill="#7b1e2e" stroke="none" style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 34px">ding!</text>
+<g class="{{toastCls}}">
+<path d="M98 140V130C98 112 110 108 120 110C132 100 168 100 180 110C190 108 202 112 202 130V140Z" fill="{{toastFill}}"></path>
+<rect x="100" y="138" width="100" height="14" rx="6" fill="{{midFill}}"></rect>
+<rect x="98" y="150" width="104" height="22" rx="8" fill="{{toastFill}}"></rect>
+</g>
+<g class="{{bodyCls}}">
+<rect x="36" y="160" width="228" height="112" rx="42" fill="#fff8e6"></rect>
+<rect x="88" y="153" width="124" height="16" rx="8" fill="#7b1e2e"></rect>
+<path d="M60 196H96" stroke-width="3"></path>
+<circle cx="150" cy="226" r="18" fill="#f4e4a6"></circle>
+<path d="M150 226L160 216" stroke-width="3"></path>
+<path d="M276 186V244" stroke-width="3"></path>
+<path d="M70 272V282M230 272V282"></path>
+</g>
+<g class="{{leverCls}}"><rect x="266" y="180" width="22" height="12" rx="5" fill="#7b1e2e"></rect></g>
+<g opacity="{{heatOp}}" stroke-width="3">
+<path class="tt-heat1" d="M118 136c-6-8 6-12 0-20"></path>
+<path class="tt-heat2" d="M150 132c-6-8 6-12 0-20"></path>
+<path class="tt-heat3" d="M182 136c-6-8 6-12 0-20"></path>
+</g>
+</svg>
+<p style="margin: 0; text-align: center; font-size: 16px; line-height: 22px; font-weight: 700">{{toasterLine}}</p>
+</div>
+</sc-if>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 13px; line-height: 18px">your toast</span>
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 32px; letter-spacing: -0.02em; line-height: 1.1">{{buildPrice}}</span>
+<span style="font-size: 13px; line-height: 18px">{{buildEur}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-if value="{{phBuild}}" hint-placeholder-val="{{true}}">
+<button type="button" class="tt-press" onClick="{{topOff}}" style="min-height: 56px; padding: 0 28px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #7b1e2e; color: #fff8e6; font-size: 17px; font-weight: 700">top it off</button>
+</sc-if>
+<sc-if value="{{phTopped}}" hint-placeholder-val="{{false}}">
+<button type="button" class="tt-press" onClick="{{openUp}}" style="min-height: 56px; padding: 0 22px; border-radius: 9999px; border: 2px solid #7b1e2e; background: transparent; color: #7b1e2e; font-size: 16px; font-weight: 700">open it up</button>
+<button type="button" class="tt-press tt-flash" onClick="{{toastIt}}" style="min-height: 56px; padding: 0 28px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #7b1e2e; color: #fff8e6; font-size: 17px; font-weight: 700">pop it in the toaster</button>
+</sc-if>
+<sc-if value="{{phToasting}}" hint-placeholder-val="{{false}}">
+<button type="button" disabled="{{true}}" style="min-height: 56px; padding: 0 28px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #fff8e6; color: #7b1e2e; font-size: 17px; font-weight: 700">toasting…</button>
+</sc-if>
+<sc-if value="{{phDone}}" hint-placeholder-val="{{false}}">
+<button type="button" class="tt-press" onClick="{{openCart}}" style="min-height: 56px; padding: 0 22px; border-radius: 9999px; border: 2px solid #7b1e2e; background: transparent; color: #7b1e2e; font-size: 16px; font-weight: 700">see my tray</button>
+<button type="button" class="tt-press tt-flash" onClick="{{again}}" style="min-height: 56px; padding: 0 28px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #9cc5be; color: #5a1420; font-size: 17px; font-weight: 700">build another</button>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+</section>
+</sc-if>
+
+
+<section style="max-width: 1360px; margin: 0 auto; padding: 0 40px 96px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
+<div class="tt-card" style="padding: 24px; border-radius: 20px; background: #fff8e6; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 48px; line-height: 1">1</span>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">pick or build</h3>
+<p style="margin: 0; font-size: 16px; line-height: 24px">Grab a favourite or stack your own toast, layer by layer.</p>
+</div>
+<div class="tt-card" style="padding: 24px; border-radius: 20px; background: #fff8e6; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 48px; line-height: 1">2</span>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">tell us where</h3>
+<p style="margin: 0; font-size: 16px; line-height: 24px">Pick up at the counter, or we bring it to your table.</p>
+</div>
+<div class="tt-card" style="padding: 24px; border-radius: 20px; background: #fff8e6; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 48px; line-height: 1">3</span>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700">rise &amp; dine</h3>
+<p style="margin: 0; font-size: 16px; line-height: 24px">We call your name. You eat. The sea waits.</p>
+</div>
+</section>
+
+
+<footer style="background: #7b1e2e; color: #fff8e6">
+<div style="max-width: 1360px; margin: 0 auto; padding: 64px 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span style="font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: clamp(56px, 9vw, 120px); line-height: 0.9; letter-spacing: -0.02em; color: #f4e4a6">toast&amp;tide</span>
+<p style="margin: 0; font-size: 16px; line-height: 24px">good morning · <span lang="ar" dir="rtl">صباح الخير</span> · guten Morgen</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 24px">
+<span style="font-weight: 700">Soma Bay, Red Sea</span>
+<span>Open daily · [YOUR HOURS]</span>
+<span>[YOUR PHONE / WHATSAPP]</span>
+<div style="display: flex; gap: 16px; margin-top: 8px" aria-hidden="true">
+<svg class="tt-bob" width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#f4e4a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 54V28c-6-2-8-8-4-13 4-6 12-7 22-7s18 1 22 7c4 5 2 11-4 13v26z"></path></svg>
+<svg class="tt-bob2" width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#f4e4a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30h48c0 14-10 24-24 24S8 44 8 30z"></path><path d="M44 30L54 10"></path></svg>
+<svg class="tt-bob" width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#f4e4a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 38a14 14 0 0 1 28 0"></path><path d="M32 14v6M14 22l4 4M50 22l-4 4"></path><path d="M6 48c6-4 12 4 18 0s12-4 18 0 12 4 16 0"></path></svg>
+<svg class="tt-bob2" width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="#f4e4a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 24h32v16c0 8-6 14-16 14s-16-6-16-14z"></path><path d="M46 29c8 0 8 11 0 11"></path></svg>
+</div>
+</div>
+</div>
+</footer>
+
+
+<sc-if value="{{open}}" hint-placeholder-val="{{false}}">
+<div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 50">
+<button type="button" class="tt-fade" onClick="{{closeCart}}" aria-label="Close your tray" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; border: 0; background: rgba(90, 20, 32, 0.45)"></button>
+<aside class="tt-drawer" aria-label="Your tray" style="position: absolute; top: 0; right: 0; bottom: 0; width: 100%; max-width: 460px; background: #fff8e6; border-left: 2px solid #7b1e2e; display: flex; flex-direction: column; overflow-y: auto">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px; border-bottom: 2px solid #e6d9b5">
+<h2 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 32px; letter-spacing: -0.02em">{{drawerTitle}}</h2>
+<button type="button" class="tt-press" onClick="{{closeCart}}" aria-label="Close" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 2px solid #7b1e2e; background: transparent; color: #7b1e2e">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+
+
+<sc-if value="{{vCart}}" hint-placeholder-val="{{true}}">
+<div style="flex: 1; display: flex; flex-direction: column; padding: 24px; gap: 16px">
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 16px; padding: 40px 0">
+<svg class="tt-jump" width="96" height="96" viewBox="0 0 64 64" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 54V28c-6-2-8-8-4-13 4-6 12-7 22-7s18 1 22 7c4 5 2 11-4 13v26z"></path><circle cx="25" cy="34" r="1.5" fill="#7b1e2e"></circle><circle cx="39" cy="34" r="1.5" fill="#7b1e2e"></circle><path d="M27 43c3-3 7-3 10 0"></path></svg>
+<p style="margin: 0; font-size: 18px; line-height: 28px; font-weight: 700">Your tray is empty.</p>
+<p style="margin: 0; font-size: 16px; line-height: 24px">No toast left behind. Go grab one.</p>
+<a href="#menu" onClick="{{closeCart}}" class="tt-press" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-weight: 700; text-decoration: none">see the menu</a>
+</div>
+</sc-if>
+<sc-for list="{{lines}}" as="c" hint-placeholder-count="2">
+<div class="tt-rise" style="display: flex; gap: 16px; align-items: center; padding-bottom: 16px; border-bottom: 2px solid #e6d9b5">
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 16px; line-height: 24px; font-weight: 700">{{c.name}}</span>
+<sc-if value="{{c.hasDetail}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; line-height: 18px">{{c.detail}}</span></sc-if>
+<span style="font-size: 13px; line-height: 18px">{{c.priceText}}</span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" class="tt-press" onClick="{{c.dec}}" aria-label="{{c.decAria}}" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid #7b1e2e; background: transparent; color: #7b1e2e; font-size: 20px; font-weight: 700; line-height: 1">−</button>
+<span style="min-width: 20px; text-align: center; font-weight: 700">{{c.qty}}</span>
+<button type="button" class="tt-press" onClick="{{c.inc}}" aria-label="{{c.incAria}}" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid #7b1e2e; background: #7b1e2e; color: #fff8e6; font-size: 20px; font-weight: 700; line-height: 1">+</button>
+</div>
+</div>
+</sc-for>
+<sc-if value="{{notEmpty}}" hint-placeholder-val="{{true}}">
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 16px; padding-top: 16px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 16px; font-weight: 700">Subtotal</span><span style="font-size: 16px; font-weight: 700">{{totalText}}</span></div>
+<button type="button" class="tt-press" onClick="{{toCheckout}}" style="min-height: 56px; border-radius: 9999px; border: 0; background: #7b1e2e; color: #fff8e6; font-size: 17px; font-weight: 700">checkout</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+
+<sc-if value="{{vCheckout}}" hint-placeholder-val="{{false}}">
+<div class="tt-rise" style="flex: 1; display: flex; flex-direction: column; padding: 24px; gap: 24px">
+<button type="button" onClick="{{backToCart}}" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0; border: 0; background: transparent; color: #7b1e2e; font-size: 15px; font-weight: 700">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>back to tray</button>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="tt-name" style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">YOUR NAME (WE'LL CALL IT OUT)</label>
+<input id="tt-name" type="text" autocomplete="given-name" value="{{name}}" onChange="{{onName}}" placeholder="e.g. Lina" style="min-height: 52px; padding: 0 16px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #ffffff; color: #7b1e2e; font-family: inherit; font-size: 16px">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">HOW</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{modes}}" as="md" hint-placeholder-count="2">
+<button type="button" class="tt-press" onClick="{{md.pick}}" aria-pressed="{{md.selected}}" style="min-height: 44px; padding: 0 16px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{md.bg}}; color: {{md.fg}}; font-size: 15px; font-weight: 700">{{md.label}}</button>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{isTable}}" hint-placeholder-val="{{false}}">
+<div class="tt-rise" style="display: flex; flex-direction: column; gap: 8px">
+<label for="tt-table" style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">TABLE NUMBER</label>
+<input id="tt-table" type="text" inputmode="numeric" value="{{table}}" onChange="{{onTable}}" placeholder="e.g. 7" style="min-height: 52px; max-width: 160px; padding: 0 16px; border-radius: 9999px; border: 2px solid #7b1e2e; background: #ffffff; color: #7b1e2e; font-family: inherit; font-size: 16px">
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">WHEN</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{whens}}" as="w" hint-placeholder-count="3">
+<button type="button" class="tt-press" onClick="{{w.pick}}" aria-pressed="{{w.selected}}" style="min-height: 44px; padding: 0 16px; border-radius: 9999px; border: 2px solid #7b1e2e; background: {{w.bg}}; color: {{w.fg}}; font-size: 15px; font-weight: 700">{{w.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 16px; padding-top: 16px; border-top: 2px solid #e6d9b5">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 16px; font-weight: 700">Total · {{count}} items</span><span style="font-size: 16px; font-weight: 700">{{totalText}}</span></div>
+<span style="font-size: 13px; line-height: 18px">Pay at the counter. [YOUR PAYMENT OPTIONS]</span>
+<button type="button" class="tt-press" onClick="{{place}}" disabled="{{cannotPlace}}" style="min-height: 56px; border-radius: 9999px; border: 0; background: #7b1e2e; color: #fff8e6; opacity: {{placeOpacity}}; font-size: 17px; font-weight: 700">place order</button>
+<sc-if value="{{cannotPlace}}" hint-placeholder-val="{{false}}"><span style="font-size: 13px; line-height: 18px">{{missing}}</span></sc-if>
+</div>
+</div>
+</sc-if>
+
+
+<sc-if value="{{vDone}}" hint-placeholder-val="{{false}}">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 24px; padding: 40px 24px; background: #f4e4a6">
+<svg class="tt-jump" width="140" height="140" viewBox="0 0 64 64" fill="none" stroke="#7b1e2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path fill="#fff8e6" d="M14 54V28c-6-2-8-8-4-13 4-6 12-7 22-7s18 1 22 7c4 5 2 11-4 13v26z"></path><circle cx="25" cy="33" r="1.5" fill="#7b1e2e"></circle><circle cx="39" cy="33" r="1.5" fill="#7b1e2e"></circle><path d="M25 41c4 5 10 5 14 0"></path></svg>
+<span class="tt-flash" style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: #7b1e2e; color: #fff8e6; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em">ORDER {{orderNo}}</span>
+<h3 style="margin: 0; font-family: 'Bagel Fat One', system-ui, sans-serif; font-weight: 400; font-size: 40px; line-height: 1.05; letter-spacing: -0.02em">it's in the toaster</h3>
+<p style="margin: 0; font-size: 16px; line-height: 24px; max-width: 320px">{{doneLine}}</p>
+<button type="button" class="tt-press" onClick="{{orderMore}}" style="min-height: 52px; padding: 0 24px; border-radius: 9999px; border: 2px solid #7b1e2e; background: transparent; color: #7b1e2e; font-size: 16px; font-weight: 700">order something else</button>
+</div>
+</sc-if>
+</aside>
+</div>
+</sc-if>
+
+<div id="tt-ghost" aria-hidden="true" style="position: fixed; left: 0; top: 0; z-index: 300; pointer-events: none; display: {{ghostDisplay}}">
+<span class="tt-ghost-in" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 12px 10px; border-radius: 18px; border: 2px solid #7b1e2e; background: #fff8e6; color: #7b1e2e; box-shadow: 0 10px 0 rgba(123, 30, 46, 0.18)">
+<svg width="150" height="30" viewBox="10 2 220 42" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path d="{{ghost.a1}}" fill="{{ghost.f1}}" stroke="{{ghost.s1}}" stroke-width="{{ghost.w1}}"></path>
+<path d="{{ghost.a2}}" fill="{{ghost.f2}}" stroke="{{ghost.s2}}" stroke-width="{{ghost.w2}}"></path>
+<path d="{{ghost.a3}}" fill="{{ghost.f3}}" stroke="{{ghost.s3}}" stroke-width="{{ghost.w3}}"></path>
+</svg>
+<span style="font-size: 15px; line-height: 18px; font-weight: 700; white-space: nowrap">{{dragLabel}}</span>
+</span>
+</div>
+</div>
+</template>
+<script>
+// Tiny runtime: renders the design's template and patches the page in place.
+(function () {
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g, WHOLE = /^\{\{\s*([^}]+?)\s*\}\}$/;
+  var SVGNS = 'http://www.w3.org/2000/svg';
+    function lookup(path, scope) {
+    if (path === 'true') return true; if (path === 'false') return false; if (path === 'null') return null;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return Number(path);
+    var parts = path.split('.'), v = scope;
+    for (var i = 0; i < parts.length; i++) { if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  function interp(s, scope) { return s.replace(HOLE, function (_, p) { var v = lookup(p, scope); return v == null ? '' : String(v); }); }
+  function val(s, scope) { var m = s.match(WHOLE); return m ? lookup(m[1], scope) : interp(s, scope); }
+
+  // template -> virtual nodes
+  function build(nodes, scope, out) {
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (n.nodeType === 3) { out.push({ text: interp(n.nodeValue, scope) }); continue; }
+      if (n.nodeType !== 1) continue;
+      var tag = n.localName;
+      if (tag === 'sc-if') { if (val(n.getAttribute('value') || '', scope)) build(n.childNodes, scope, out); continue; }
+      if (tag === 'sc-for') {
+        var list = val(n.getAttribute('list') || '', scope) || [], as = n.getAttribute('as') || 'item';
+        for (var j = 0; j < list.length; j++) { var sc = Object.create(scope); sc[as] = list[j]; sc.$index = j; build(n.childNodes, sc, out); }
+        continue;
+      }
+      var attrs = {}, events = {}, props = {};
+      for (var a = 0; a < n.attributes.length; a++) {
+        var at = n.attributes[a], name = at.name, v = val(at.value, scope), lname = name.toLowerCase();
+        if (lname.indexOf('hint-') === 0) continue;
+        if (lname.indexOf('on') === 0 && (typeof v === 'function' || WHOLE.test(at.value))) {
+          var ev = lname.slice(2);
+          if (ev === 'change' && (tag === 'input' || tag === 'textarea')) ev = 'input';
+          if (typeof v === 'function') events[ev] = v;
+          continue;
+        }
+        if (name === 'value' && tag === 'input') { props.value = v == null ? '' : String(v); continue; }
+        if (name === 'disabled') { if (v === true || v === 'true' || v === '') attrs.disabled = ''; continue; }
+        if (v === false || v == null) continue;
+        attrs[name] = String(v);
+      }
+      out.push({ tag: tag, ns: n.namespaceURI, attrs: attrs, events: events, props: props, kids: build(n.childNodes, scope, []) });
+    }
+    return out;
+  }
+
+  function create(v) {
+    if (v.text !== undefined) return document.createTextNode(v.text);
+    var el = v.ns === SVGNS ? document.createElementNS(SVGNS, v.tag) : document.createElement(v.tag);
+    el._h = {};
+    update(el, v, true);
+    for (var i = 0; i < v.kids.length; i++) el.appendChild(create(v.kids[i]));
+    return el;
+  }
+  function listen(el, ev) { el.addEventListener(ev, function (e) { var f = el._h[ev]; if (f) f(e); }); }
+  function update(el, v, fresh) {
+    var prev = el._a || {}, k;
+    for (k in prev) { if (!(k in v.attrs)) el.removeAttribute(k); }
+    for (k in v.attrs) { if (prev[k] !== v.attrs[k]) el.setAttribute(k, v.attrs[k]); }
+    el._a = v.attrs;
+    for (k in v.events) { if (!(k in el._h)) listen(el, k); }
+    var h = {}; for (k in el._h) h[k] = null; for (k in v.events) h[k] = v.events[k]; el._h = h;
+    if ('value' in v.props && el.value !== v.props.value) el.value = v.props.value;
+  }
+  function same(el, v) {
+    if (v.text !== undefined) return el.nodeType === 3;
+    return el.nodeType === 1 && el.localName === v.tag && el.namespaceURI === (v.ns || el.namespaceURI);
+  }
+  function patch(parent, vkids) {
+    var kids = parent.childNodes;
+    for (var i = 0; i < vkids.length; i++) {
+      var v = vkids[i], el = kids[i];
+      if (!el) { parent.appendChild(create(v)); continue; }
+      if (!same(el, v)) { parent.replaceChild(create(v), el); continue; }
+      if (v.text !== undefined) { if (el.nodeValue !== v.text) el.nodeValue = v.text; continue; }
+      update(el, v, false);
+      patch(el, v.kids);
+    }
+    while (kids.length > vkids.length) parent.removeChild(parent.lastChild);
+  }
+
+  var tpl = document.getElementById('tt-template').content;
+  window.DCLogic = class DCLogic {
+    constructor() { this.props = {}; this.state = {}; this._q = false; }
+    setState(u) {
+      var p = typeof u === 'function' ? u(this.state, this.props) : u;
+      this.state = Object.assign({}, this.state, p);
+      if (this._q) return; this._q = true;
+      var self = this; Promise.resolve().then(function () { self._q = false; self._render(); });
+    }
+    forceUpdate() { this._render(); }
+    _render() { patch(this._root, build(tpl.childNodes, this.renderVals(), [])); }
+  };
+  window.ttMount = function (C) {
+    var c = new C(); c._root = document.getElementById('app'); c._render();
+    if (c.componentDidMount) c.componentDidMount();
+  };
+})();
+
+</script>
+<script>
+
+var TT_MENU = [
+  { id: 'reef', st: 'toast', d: 'toast', name: 'Reef Toast', desc: 'sourdough, smashed avocado, chilli flakes, lemon', price: 220 },
+  { id: 'sunny', st: 'toast', d: 'toast', name: 'Sunny Side', desc: 'multigrain, fried egg, feta, za’atar', price: 210 },
+  { id: 'sweet', st: 'toast', d: 'toast', name: 'Sweet Tide', desc: 'brioche, whipped ricotta, berries, honey', price: 200 },
+  { id: 'golden', st: 'gf', d: 'loaf', gf: true, name: 'Golden Hour Banana Bread', desc: 'a thick warm slice, salted butter, date syrup', price: 150 },
+  { id: 'seed', st: 'gf', d: 'loaf', gf: true, name: 'GF Seed Loaf', desc: 'two slices, butter and house jam, sealed to go', price: 140 },
+  { id: 'muffin', st: 'gf', d: 'loaf', gf: true, name: 'Lemon Muffin', desc: 'lemon, a little poppy seed, a lot of sunshine', price: 110 },
+  { id: 'sunrise', st: 'yogurt', d: 'bowl', name: 'Sunrise Bowl', desc: 'greek yogurt, house granola, mango, passion fruit, honey', price: 240 },
+  { id: 'lowtide', st: 'yogurt', d: 'bowl', name: 'Low Tide Bowl', desc: 'greek yogurt, blueberries, coconut, house granola', price: 230 },
+  { id: 'datebowl', st: 'yogurt', d: 'bowl', name: 'Date & Tahini Bowl', desc: 'greek yogurt, dates, tahini, sesame crunch', price: 220 },
+  { id: 'flat', st: 'drinks', d: 'cup', name: 'Flat White', desc: 'double shot, silky milk', price: 110 },
+  { id: 'oj', st: 'drinks', d: 'cup', name: 'Fresh Orange', desc: 'squeezed this morning', price: 120 },
+  { id: 'hib', st: 'drinks', d: 'cup', name: 'Iced Hibiscus', desc: 'karkade, lime, lots of ice', price: 90 }
+];
+var TT_STATIONS = [
+  { id: 'toast', label: 'the toast bar', intro: 'Thick-cut and toasted to order. Hot stuff. Handle with hands.' },
+  { id: 'buildtoast', label: 'build your toast', intro: '' },
+  { id: 'gf', label: 'the gf oven', intro: 'A closed, 100% gluten-free bakery. Everything leaves the gf oven sealed. Gluten-free, never taste-free.' },
+  { id: 'yogurt', label: 'low tide yogurt bar', intro: 'Build your own bowl: Greek yogurt, house granola and whatever fruit the morning brought.' },
+  { id: 'drinks', label: 'drinks', intro: 'Coffee for the sleepy, cold things for the sunny.' },
+  { id: 'smoothie', label: 'build a smoothie', intro: 'Pick a base, throw in some fruit, add a boost or two. We blend, you sip.' }
+];
+var TT_BREADS = [ { id: 'sour', label: 'sourdough', p: 0 }, { id: 'multi', label: 'multigrain', p: 0 }, { id: 'brioche', label: 'brioche', p: 20 } ];
+var TT_SPREADS = [ { id: 'avo', label: 'smashed avocado', p: 40 }, { id: 'ricotta', label: 'whipped ricotta', p: 35 }, { id: 'labneh', label: 'labneh', p: 30 }, { id: 'pb', label: 'peanut butter', p: 30 } ];
+var TT_TOPS = [ { id: 'egg', label: 'fried egg', p: 35 }, { id: 'feta', label: 'feta', p: 30 }, { id: 'tom', label: 'cherry tomatoes', p: 20 }, { id: 'figs', label: 'figs', p: 35 }, { id: 'berries', label: 'berries', p: 35 }, { id: 'banana', label: 'banana', p: 20 }, { id: 'zaatar', label: 'za’atar', p: 10 }, { id: 'chilli', label: 'chilli flakes', p: 0 } ];
+var TT_FIN = [ { id: 'oil', label: 'olive oil', p: 0 }, { id: 'honey', label: 'honey', p: 15 }, { id: 'date', label: 'date syrup', p: 15 }, { id: 'none', label: 'keep it simple', p: 0 } ];
+var TT_BASE = 120;
+var TT_SM_PRICE = 140;
+var TT_YB_PRICE = 150;
+var TT_YB_BASES = [ { id: 'greek', label: 'greek yogurt', p: 0 }, { id: 'coco', label: 'coconut yogurt', p: 25 }, { id: 'labneh', label: 'labneh', p: 10 } ];
+var TT_YB_GRANOLA = [ { id: 'house', label: 'house granola', p: 0 }, { id: 'nutty', label: 'extra nutty granola', p: 15 }, { id: 'none', label: 'no granola', p: 0 } ];
+var TT_YB_FRUITS = [ { id: 'mango', label: 'mango', p: 25 }, { id: 'blue', label: 'blueberries', p: 30 }, { id: 'straw', label: 'strawberries', p: 25 }, { id: 'banana', label: 'banana', p: 15 }, { id: 'passion', label: 'passion fruit', p: 25 }, { id: 'figs', label: 'figs', p: 30 }, { id: 'pom', label: 'pomegranate', p: 25 } ];
+var TT_YB_CRUNCH = [ { id: 'coconut', label: 'toasted coconut', p: 15 }, { id: 'cacao', label: 'cacao nibs', p: 20 }, { id: 'chia', label: 'chia seeds', p: 15 }, { id: 'pistachio', label: 'pistachio', p: 35 }, { id: 'sesame', label: 'sesame crunch', p: 15 }, { id: 'pb', label: 'peanut butter', p: 25 } ];
+var TT_YB_DRIZZLE = [ { id: 'honey', label: 'honey', p: 0 }, { id: 'date', label: 'date syrup', p: 0 }, { id: 'tahini', label: 'tahini', p: 10 }, { id: 'none', label: 'no drizzle', p: 0 } ];
+var TT_SM_BASES = [ { id: 'coco', label: 'coconut water', p: 0 }, { id: 'almond', label: 'almond milk', p: 15 }, { id: 'oat', label: 'oat milk', p: 15 }, { id: 'yog', label: 'greek yogurt', p: 20 }, { id: 'oj', label: 'orange juice', p: 0 } ];
+var TT_SM_FRUITS = [ { id: 'banana', label: 'banana', p: 15 }, { id: 'mango', label: 'mango', p: 25 }, { id: 'straw', label: 'strawberries', p: 25 }, { id: 'blue', label: 'blueberries', p: 30 }, { id: 'pine', label: 'pineapple', p: 20 }, { id: 'dates', label: 'dates', p: 15 }, { id: 'spinach', label: 'spinach', p: 15 } ];
+var TT_SM_BOOSTS = [ { id: 'spirulina', label: 'spirulina', p: 35 }, { id: 'chia', label: 'chia seeds', p: 25 }, { id: 'matcha', label: 'matcha', p: 35 }, { id: 'acai', label: 'açaí', p: 40 }, { id: 'flax', label: 'flax', p: 25 }, { id: 'cacao', label: 'cacao nibs', p: 30 }, { id: 'pb', label: 'peanut butter', p: 25 }, { id: 'ginger', label: 'fresh ginger', p: 15 } ];
+var TT_SM_SIZES = [ { id: 'reg', label: 'regular', p: 0 }, { id: 'big', label: 'big gulp', p: 40 } ];
+function ttLab(x) { return x.label; }
+// smoothie colours: [hex, how strongly it tints the blend]
+var TT_SM_COLORS = {
+  coco: ['#f3efe0', 0.6], almond: ['#efe3cf', 0.8], oat: ['#eadcc0', 0.8], yog: ['#f6f1e7', 1], oj: ['#f7a531', 1.6],
+  banana: ['#f3dc7a', 2.5], mango: ['#f5940f', 5], straw: ['#d92b3e', 5], blue: ['#4a3b8c', 5], pine: ['#f4d03c', 3.5], dates: ['#8a5a35', 2.5], spinach: ['#4c8a36', 4.5],
+  spirulina: ['#1d6b66', 4], chia: ['#8a8a80', 0.2], matcha: ['#7fa64a', 3], acai: ['#5a2a5e', 4.5], flax: ['#b08a5a', 0.4], cacao: ['#5a3825', 1.2], pb: ['#b07a45', 0.9], ginger: ['#e2c58a', 0.3]
+};
+function ttRgb(hex) { var n = parseInt(hex.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function ttLum(rgb) { var c = rgb.map(function (v) { v = v / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; }
+function ttContrast(a, b) { var x = ttLum(a), y = ttLum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function ttMix(items) {
+  var r = 0, g = 0, b = 0, w = 0, top = null, topW = -1;
+  items.forEach(function (it, i) {
+    var c = TT_SM_COLORS[it.id] || ['#f3efe0', 0.5], rgb = ttRgb(c[0]), lin = rgb.map(function (v) { return Math.pow(v / 255, 2.2); });
+    r += lin[0] * c[1]; g += lin[1] * c[1]; b += lin[2] * c[1]; w += c[1];
+    if (i > 0 && c[1] > topW) { topW = c[1]; top = it; }
+  });
+  var out = [r, g, b].map(function (v) { return Math.round(Math.pow(v / w, 1 / 2.2) * 255); });
+  var hex = '#' + out.map(function (v) { return ('0' + v.toString(16)).slice(-2); }).join('');
+  var ink = ttContrast(out, ttRgb('#fff8e6')) >= ttContrast(out, ttRgb('#5a1420')) ? '#fff8e6' : '#5a1420';
+  return { color: hex, ink: ink, top: top || items[0] };
+}
+var TT_ROTS = ['-5deg', '4deg', '-3deg', '6deg', '-7deg', '3deg', '-4deg'];
+var TT_MARQUEE = ['rise & dine', 'gluten-free, never taste-free', 'no toast left behind', 'hot stuff. handle with hands.', 'too sleepy to choose?'];
+function ttEur(p) { return Math.max(1, Math.round(p / 55)); }
+function ttFmt(p) { return 'EGP ' + p + ' · €' + ttEur(p); }
+function ttFind(list, id) { for (var i = 0; i < list.length; i++) { if (list[i].id === id) return list[i]; } return list[0]; }
+function ttPick(list) { return list[Math.floor(Math.random() * list.length)]; }
+var JAM = '#7b1e2e', CREAM = '#fff8e6', SEA = '#9cc5be', BUTTER = '#f4e4a6', DEEP = '#5a1420';
+
+// ---- ingredient illustrations: side view, 240×44, up to 3 paths each ----
+function ttC(x, y, r) { return 'M' + (x - r) + ' ' + y + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+function ttCs(list) { return list.map(function (c) { return ttC(c[0], c[1], c[2]); }).join(''); }
+function ttR(x, y, w, h, r) { return 'M' + (x + r) + ' ' + y + 'h' + (w - 2 * r) + 'q' + r + ' 0 ' + r + ' ' + r + 'v' + (h - 2 * r) + 'q0 ' + r + ' ' + (-r) + ' ' + r + 'h' + (-(w - 2 * r)) + 'q' + (-r) + ' 0 ' + (-r) + ' ' + (-r) + 'v' + (-(h - 2 * r)) + 'q0 ' + (-r) + ' ' + r + ' ' + (-r) + 'z'; }
+function ttScatter(n, r, seed) { var out = []; for (var i = 0; i < n; i++) { out.push([28 + i * (184 / n) + ((i * seed) % 5), 15 + ((i * seed * 7) % 16), r]); } return ttCs(out); }
+function ttP(d, fill, stroke, w) { return [d, fill, stroke === undefined ? JAM : stroke, w === undefined ? 3 : w]; }
+var TT_SLAB = 'M14 22Q14 12 26 12H214Q226 12 226 22V28Q226 38 214 38H26Q14 38 14 28Z';
+var TT_DOME = 'M14 38V28C14 14 26 10 40 12C52 4 72 6 82 11C96 3 118 3 128 10C142 3 162 5 172 11C186 4 214 8 226 26V38Z';
+var TT_SMEAR = 'M16 26C34 14 58 22 80 17C104 12 126 22 150 16C174 11 200 20 224 26C214 33 190 33 168 31C142 35 116 31 92 34C66 37 38 34 16 26Z';
+var TT_DRIZ = 'M24 24C40 12 52 34 70 22C88 10 98 32 118 22C136 12 148 32 166 22C182 12 196 30 216 24';
+var TT_CRUMB = ttCs([[50, 25, 2.4], [86, 22, 2], [120, 27, 2.4], [154, 23, 2], [190, 26, 2.4]]);
+var TT_SEEDS = ttScatter(22, 1.7, 3);
+var TT_BREAD_FILL = { sour: '#ecc98a', multi: '#d6b07a', brioche: '#f5c766' };
+var TT_TOASTED = { sour: '#c98a4a', multi: '#a8774a', brioche: '#d99a3a' };
+var TT_ART = {
+  'bread:sour': [ttP(TT_SLAB, '#ecc98a'), ttP(TT_CRUMB, '#c9a27a', 'none', 0)],
+  'bread:multi': [ttP(TT_SLAB, '#d6b07a'), ttP(TT_SEEDS, '#6b3a22', 'none', 0)],
+  'bread:brioche': [ttP(TT_SLAB, '#f5c766'), ttP('M40 19H120', 'none', CREAM, 3)],
+  'top-bread:sour': [ttP(TT_DOME, '#ecc98a'), ttP(ttCs([[70, 24, 2.2], [120, 22, 2], [170, 25, 2.2]]), '#c9a27a', 'none', 0)],
+  'top-bread:multi': [ttP(TT_DOME, '#d6b07a'), ttP(ttScatter(16, 1.7, 5), '#6b3a22', 'none', 0)],
+  'top-bread:brioche': [ttP(TT_DOME, '#f5c766'), ttP('M50 18C70 12 90 12 110 14', 'none', CREAM, 3)],
+  'spread:avo': [ttP(TT_SMEAR, '#b9c97a'), ttP(ttCs([[52, 24, 2.5], [90, 22, 2.2], [128, 26, 2.5], [166, 21, 2.2], [200, 26, 2.4]]), '#6e8a3a', 'none', 0)],
+  'spread:ricotta': [ttP(TT_SMEAR, '#fffcf2'), ttP('M70 25c10-6 20 6 30 0M140 23c10-6 20 6 30 0', 'none', '#d9c9a0', 2.5)],
+  'spread:labneh': [ttP(TT_SMEAR, '#f7eedb'), ttP(ttCs([[80, 24, 2.4], [150, 25, 2.4], [118, 22, 1.8]]), '#c9b84a', 'none', 0)],
+  'spread:pb': [ttP(TT_SMEAR, '#c48a4f'), ttP(ttCs([[60, 24, 2.4], [110, 21, 2], [170, 25, 2.4]]), '#8f5a2c', 'none', 0)],
+  'top:egg': [ttP('M36 28C28 18 46 10 68 14C88 6 122 6 142 13C168 7 204 14 202 26C198 36 54 38 36 28Z', '#fffcf2'), ttP(ttC(116, 22, 10), '#f2b632')],
+  'top:feta': [ttP(ttR(34, 12, 26, 20, 4) + ttR(78, 14, 26, 20, 4) + ttR(122, 11, 26, 20, 4) + ttR(166, 14, 26, 20, 4), '#fffcf2'), ttP(ttCs([[44, 20, 1.6], [92, 25, 1.6], [132, 19, 1.6], [178, 23, 1.6]]), '#d9c9a0', 'none', 0)],
+  'top:tom': [ttP(ttCs([[46, 22, 12], [84, 24, 12], [122, 22, 12], [160, 24, 12], [198, 22, 12]]), '#e0603e'), ttP(ttCs([[42, 18, 3], [80, 20, 3], [118, 18, 3], [156, 20, 3], [194, 18, 3]]), '#ffd9c9', 'none', 0)],
+  'top:figs': [ttP(ttCs([[60, 22, 14], [120, 22, 14], [180, 22, 14]]), '#8a3b5c'), ttP(ttCs([[60, 22, 8], [120, 22, 8], [180, 22, 8]]), '#f08f9c', 'none', 0), ttP(ttCs([[57, 21, 1.4], [63, 24, 1.4], [117, 20, 1.4], [123, 24, 1.4], [177, 21, 1.4], [183, 24, 1.4]]), CREAM, 'none', 0)],
+  'top:berries': [ttP(ttCs([[44, 24, 10], [100, 22, 10], [156, 24, 10], [204, 22, 9]]), '#d23a4a'), ttP(ttCs([[72, 24, 8], [128, 22, 8], [182, 24, 8]]), '#4a3b8c'), ttP(ttCs([[44, 20, 1.4], [100, 18, 1.4], [156, 20, 1.4], [204, 18, 1.4]]), CREAM, 'none', 0)],
+  'top:banana': [ttP(ttCs([[48, 22, 12], [86, 24, 12], [124, 22, 12], [162, 24, 12], [198, 22, 11]]), '#f8e7a0'), ttP(ttCs([[48, 22, 2.4], [86, 24, 2.4], [124, 22, 2.4], [162, 24, 2.4], [198, 22, 2.4]]), '#c9a27a', 'none', 0)],
+  'top:zaatar': [ttP(ttScatter(30, 2.2, 3), '#6f7f3c', 'none', 0), ttP(ttScatter(14, 1.6, 7), '#c9a27a', 'none', 0)],
+  'top:chilli': [ttP(ttScatter(18, 2.4, 5), '#d23a2a', 'none', 0), ttP(ttScatter(8, 1.6, 11), '#f2b632', 'none', 0)],
+  'finish:oil': [ttP(TT_DRIZ, 'none', JAM, 9), ttP(TT_DRIZ, 'none', '#d4c45a', 5)],
+  'finish:honey': [ttP(TT_DRIZ, 'none', JAM, 9), ttP(TT_DRIZ, 'none', '#eaa83a', 5)],
+  'finish:date': [ttP(TT_DRIZ, 'none', JAM, 9), ttP(TT_DRIZ, 'none', '#7a4326', 5)],
+  'finish:none': [ttP('M60 24H180', 'none', '#d9c9a0', 3)]
+};
+var TT_MID = { avo: '#b9c97a', ricotta: '#fffcf2', labneh: '#f7eedb', pb: '#c48a4f' };
+function ttArt(key) {
+  var parts = TT_ART[key] || [];
+  var o = {};
+  for (var i = 0; i < 3; i++) {
+    var p = parts[i] || ['', 'none', 'none', 0];
+    o['a' + (i + 1)] = p[0]; o['f' + (i + 1)] = p[1]; o['s' + (i + 1)] = p[2]; o['w' + (i + 1)] = p[3];
+  }
+  return o;
+}
+
+class Component extends DCLogic {
+  state = { station: 'toast', cart: [], open: false, view: 'cart', bread: 'sour', spread: 'avo', tops: ['egg', 'chilli'], finish: 'oil', bump: 0, added: null, built: false, mode: 'pickup', name: '', table: '', when: 'now', order: null, smBase: 'coco', smFruits: ['banana', 'mango'], smBoosts: ['chia'], smSize: 'reg', blending: false, blended: false, smAdded: false, ybBase: 'greek', ybGranola: 'house', ybFruits: ['mango', 'passion'], ybCrunch: ['coconut'], ybDrizzle: 'honey', ybAdded: false, dragging: false, dragFrom: '', dragKey: '', dragKind: '', dragLabel: '', plateOver: false, plateMsg: '', phase: 'build' };
+
+  componentDidMount() {
+    var self = this;
+    this._mv = function (e) { self.dragMove(e); };
+    this._up = function (e) { self.dragEnd(e, false); };
+    this._cx = function (e) { self.dragEnd(e, true); };
+    document.addEventListener('pointermove', this._mv, { passive: false });
+    document.addEventListener('pointerup', this._up);
+    document.addEventListener('pointercancel', this._cx);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._t); clearTimeout(this._b); clearTimeout(this._s); clearTimeout(this._sa); clearTimeout(this._yb); clearTimeout(this._pm); clearTimeout(this._tx);
+    document.removeEventListener('pointermove', this._mv);
+    document.removeEventListener('pointerup', this._up);
+    document.removeEventListener('pointercancel', this._cx);
+  }
+
+  // ---- drag & drop for the toast builder (mouse, touch and pen) ----
+  grab(e, from, kind, id, label) {
+    if (e.button > 0 || this.state.phase === 'toasting') return;
+    this._drag = { from: from, kind: kind, id: id, label: label, x: e.clientX, y: e.clientY, active: false };
+  }
+
+  overPlate(x, y) {
+    var el = document.getElementById('tt-plate');
+    if (!el) return false;
+    var r = el.getBoundingClientRect();
+    return x > r.left - 24 && x < r.right + 24 && y > r.top - 24 && y < r.bottom + 24;
+  }
+
+  placeGhost(x, y) {
+    var g = document.getElementById('tt-ghost');
+    if (g) g.style.transform = 'translate(' + (x - 44) + 'px,' + (y - 28) + 'px) rotate(-5deg)';
+  }
+
+  dragMove(e) {
+    var d = this._drag;
+    if (!d) return;
+    if (!d.active) {
+      if (Math.abs(e.clientX - d.x) + Math.abs(e.clientY - d.y) < 8) return;
+      d.active = true;
+      this.placeGhost(e.clientX, e.clientY);
+      this.setState({ dragging: true, dragFrom: d.from, dragKey: d.kind + ':' + d.id, dragKind: d.kind, dragLabel: d.label });
+    }
+    if (e.cancelable) e.preventDefault();
+    this.placeGhost(e.clientX, e.clientY);
+    var over = this.overPlate(e.clientX, e.clientY);
+    if (over !== this.state.plateOver) this.setState({ plateOver: over });
+  }
+
+  dragEnd(e, cancelled) {
+    var d = this._drag;
+    this._drag = null;
+    if (!d || !d.active) return;
+    var self = this;
+    this._suppress = true;
+    setTimeout(function () { self._suppress = false; }, 0);
+    var over = !cancelled && this.overPlate(e.clientX, e.clientY);
+    this.setState({ dragging: false, plateOver: false, dragFrom: '', dragKey: '' });
+    if (cancelled) return;
+    if (d.from === 'tray' && over) this.dropOn(d.kind, d.id);
+    if (d.from === 'toast' && !over) this.takeOff(d.kind, d.id);
+  }
+
+  flashMsg(text) {
+    this.setState({ plateMsg: text });
+    clearTimeout(this._pm);
+    var self = this;
+    this._pm = setTimeout(function () { self.setState({ plateMsg: '' }); }, 2400);
+  }
+
+  // the sandwich: build → topped (lid on) → toasting → done (popped, in the tray)
+  topOff() { if (this.state.phase === 'build') this.setState({ phase: 'topped' }); }
+  openUp() { if (this.state.phase === 'topped') this.setState({ phase: 'build' }); }
+  again() { this.setState({ phase: 'build' }); }
+  toastIt() {
+    if (this.state.phase !== 'topped') return;
+    this.setState({ phase: 'toasting' });
+    clearTimeout(this._tx);
+    var self = this;
+    this._tx = setTimeout(function () {
+      var info = self.buildInfo();
+      self.add('build-' + Date.now(), 'Your toast', info.detail, info.price);
+      self.setState({ phase: 'done' });
+    }, 2000);
+  }
+  // any change to the fillings re-opens the sandwich
+  reopen() { if (this.state.phase === 'done') this.setState({ phase: 'build' }); }
+
+  dropOn(kind, id) {
+    var s = this.state;
+    if (s.phase === 'toasting') return;
+    if (s.phase === 'topped') { this.flashMsg('open it up to add more'); return; }
+    this.reopen();
+    if (kind === 'bread') this.setState({ bread: id });
+    else if (kind === 'spread') this.setState({ spread: id });
+    else if (kind === 'finish') this.setState({ finish: id });
+    else if (kind === 'top') {
+      if (s.tops.indexOf(id) >= 0) { this.flashMsg('already on there!'); return; }
+      if (s.tops.length >= 4) { this.flashMsg('toast’s full! drag a topping off first'); return; }
+      this.setState({ tops: s.tops.concat([id]) });
+    }
+  }
+
+  takeOff(kind, id) {
+    if (this.state.phase !== 'build') return;
+    if (kind === 'top') this.setState({ tops: this.state.tops.filter(function (t) { return t !== id; }) });
+    else if (kind === 'finish') this.setState({ finish: 'none' });
+    else if (kind === 'spread') this.flashMsg('every toast needs a spread. drop a new one to swap');
+  }
+
+  ybInfo() {
+    var s = this.state;
+    var base = ttFind(TT_YB_BASES, s.ybBase), gran = ttFind(TT_YB_GRANOLA, s.ybGranola), dr = ttFind(TT_YB_DRIZZLE, s.ybDrizzle);
+    var fruits = TT_YB_FRUITS.filter(function (f) { return s.ybFruits.indexOf(f.id) >= 0; });
+    var crunch = TT_YB_CRUNCH.filter(function (f) { return s.ybCrunch.indexOf(f.id) >= 0; });
+    var price = TT_YB_PRICE + base.p + gran.p + dr.p;
+    fruits.concat(crunch).forEach(function (f) { price += f.p; });
+    var parts = [];
+    if (gran.id !== 'none') parts.push(gran.label);
+    parts = parts.concat(fruits.map(ttLab), crunch.map(ttLab));
+    if (dr.id !== 'none') parts.push(dr.label);
+    return { base: base, parts: parts, price: price, detail: [base.label].concat(parts).join(', ') };
+  }
+
+  addYb() {
+    var info = this.ybInfo();
+    this.add('bowl-' + Date.now(), 'Your bowl', info.detail, info.price);
+    this.setState({ ybAdded: true });
+    clearTimeout(this._yb);
+    var self = this;
+    this._yb = setTimeout(function () { self.setState({ ybAdded: false }); }, 1500);
+  }
+
+  ybVals() {
+    var self = this, s = this.state;
+    var pill = function (sel) { return { bg: sel ? JAM : CREAM, fg: sel ? CREAM : JAM, selected: sel ? 'true' : 'false' }; };
+    var single = function (list, field) {
+      return list.map(function (o) {
+        var p = pill(s[field] === o.id);
+        return { label: o.label, extra: o.p ? '+' + o.p : '', bg: p.bg, fg: p.fg, selected: p.selected, disabled: false, opacity: 1, pick: function () { var u = {}; u[field] = o.id; self.setState(u); } };
+      });
+    };
+    var multi = function (list, field, max) {
+      var cur = s[field];
+      return list.map(function (o) {
+        var sel = cur.indexOf(o.id) >= 0; var p = pill(sel); var dis = !sel && cur.length >= max;
+        return { label: o.label, extra: o.p ? '+' + o.p : '', bg: p.bg, fg: p.fg, selected: p.selected, disabled: dis, opacity: dis ? 0.45 : 1, pick: function () { self.toggleList(field, o.id, max); } };
+      });
+    };
+    var info = this.ybInfo();
+    var layers = info.parts.map(function (label, i) {
+      var c = i % 2;
+      return { label: label, rot: TT_ROTS[i % TT_ROTS.length], bg: c === 0 ? CREAM : JAM, fg: c === 0 ? JAM : CREAM };
+    });
+    return {
+      steps: [
+        { n: '1', title: 'pick your base', hint: '', options: single(TT_YB_BASES, 'ybBase') },
+        { n: '2', title: 'granola', hint: '', options: single(TT_YB_GRANOLA, 'ybGranola') },
+        { n: '3', title: 'add fruit', hint: 'up to 3 · ' + s.ybFruits.length + ' picked', options: multi(TT_YB_FRUITS, 'ybFruits', 3) },
+        { n: '4', title: 'add crunch', hint: 'up to 2 · ' + s.ybCrunch.length + ' picked', options: multi(TT_YB_CRUNCH, 'ybCrunch', 2) },
+        { n: '5', title: 'drizzle', hint: '', options: single(TT_YB_DRIZZLE, 'ybDrizzle') }
+      ],
+      layers: layers, baseLabel: info.base.label,
+      priceText: 'EGP ' + info.price, eurText: '≈ €' + ttEur(info.price),
+      add: function () { self.addYb(); },
+      addedFlash: s.ybAdded, addIdle: !s.ybAdded
+    };
+  }
+
+  add(key, name, detail, price) {
+    var cart = this.state.cart.slice();
+    var idx = -1;
+    for (var i = 0; i < cart.length; i++) { if (cart[i].key === key) idx = i; }
+    if (idx >= 0) cart[idx] = Object.assign({}, cart[idx], { qty: cart[idx].qty + 1 });
+    else cart.push({ key: key, name: name, detail: detail, price: price, qty: 1 });
+    this.setState({ cart: cart, bump: this.state.bump + 1 });
+  }
+
+  addItem(m) {
+    this.add(m.id, m.name, '', m.price);
+    this.setState({ added: m.id });
+    clearTimeout(this._t);
+    var self = this;
+    this._t = setTimeout(function () { self.setState({ added: null }); }, 1300);
+  }
+
+  qty(key, d) {
+    var cart = this.state.cart.map(function (c) { return c.key === key ? Object.assign({}, c, { qty: c.qty + d }) : c; }).filter(function (c) { return c.qty > 0; });
+    this.setState({ cart: cart });
+  }
+
+  buildInfo() {
+    var s = this.state;
+    var b = ttFind(TT_BREADS, s.bread), sp = ttFind(TT_SPREADS, s.spread), f = ttFind(TT_FIN, s.finish);
+    var tops = TT_TOPS.filter(function (t) { return s.tops.indexOf(t.id) >= 0; });
+    var price = TT_BASE + b.p + sp.p + f.p;
+    tops.forEach(function (t) { price += t.p; });
+    var parts = [sp.label].concat(tops.map(function (t) { return t.label; }));
+    if (f.id !== 'none') parts.push(f.label);
+    return { b: b, sp: sp, f: f, tops: tops, price: price, detail: b.label + ', ' + parts.join(', ') };
+  }
+
+  addBuild() {
+    var info = this.buildInfo();
+    this.add('build-' + Date.now(), 'Your toast', info.detail, info.price);
+    this.setState({ built: true });
+    clearTimeout(this._b);
+    var self = this;
+    this._b = setTimeout(function () { self.setState({ built: false }); }, 1500);
+  }
+
+  surprise() {
+    var pool = TT_TOPS.slice().sort(function () { return Math.random() - 0.5; });
+    var n = 2 + Math.floor(Math.random() * 2);
+    if (this.state.phase === 'toasting') return;
+    this.setState({ phase: 'build', bread: ttPick(TT_BREADS).id, spread: ttPick(TT_SPREADS).id, tops: pool.slice(0, n).map(function (t) { return t.id; }), finish: ttPick(TT_FIN).id });
+  }
+
+  smInfo() {
+    var s = this.state;
+    var base = ttFind(TT_SM_BASES, s.smBase), size = ttFind(TT_SM_SIZES, s.smSize);
+    var fruits = TT_SM_FRUITS.filter(function (f) { return s.smFruits.indexOf(f.id) >= 0; });
+    var boosts = TT_SM_BOOSTS.filter(function (f) { return s.smBoosts.indexOf(f.id) >= 0; });
+    var price = TT_SM_PRICE + base.p + size.p;
+    fruits.concat(boosts).forEach(function (f) { price += f.p; });
+    var detail = size.label + ', ' + [base.label].concat(fruits.map(ttLab), boosts.map(ttLab)).join(', ');
+    return { base: base, size: size, fruits: fruits, boosts: boosts, price: price, detail: detail };
+  }
+
+  toggleList(field, id, max) {
+    var list = this.state[field].slice();
+    var i = list.indexOf(id);
+    if (i >= 0) list.splice(i, 1); else if (list.length < max) list.push(id);
+    var u = { blended: false };
+    u[field] = list;
+    this.setState(u);
+  }
+
+  blend() {
+    if (this.state.blending) return;
+    this.setState({ blending: true, blended: false });
+    clearTimeout(this._s);
+    var self = this;
+    this._s = setTimeout(function () { self.setState({ blending: false, blended: true }); }, 1300);
+  }
+
+  addSmoothie() {
+    var info = this.smInfo();
+    this.add('smoothie-' + Date.now(), 'Your smoothie', info.detail, info.price);
+    this.setState({ smAdded: true });
+    clearTimeout(this._sa);
+    var self = this;
+    this._sa = setTimeout(function () { self.setState({ smAdded: false }); }, 1500);
+  }
+
+  smoothieVals() {
+    var self = this, s = this.state;
+    var pill = function (sel) { return { bg: sel ? JAM : CREAM, fg: sel ? CREAM : JAM, selected: sel ? 'true' : 'false' }; };
+    var single = function (list, field) {
+      return list.map(function (o) {
+        var p = pill(s[field] === o.id);
+        return { label: o.label, extra: o.p ? '+' + o.p : '', bg: p.bg, fg: p.fg, selected: p.selected, disabled: false, opacity: 1, pick: function () { var u = { blended: false }; u[field] = o.id; self.setState(u); } };
+      });
+    };
+    var multi = function (list, field, max) {
+      var cur = s[field];
+      return list.map(function (o) {
+        var sel = cur.indexOf(o.id) >= 0; var p = pill(sel); var dis = !sel && cur.length >= max;
+        return { label: o.label, extra: o.p ? '+' + o.p : '', bg: p.bg, fg: p.fg, selected: p.selected, disabled: dis, opacity: dis ? 0.45 : 1, pick: function () { self.toggleList(field, o.id, max); } };
+      });
+    };
+    var info = this.smInfo();
+    var labels = [info.base.label].concat(info.fruits.map(ttLab), info.boosts.map(ttLab));
+    var layers = labels.map(function (label, i) {
+      var c = i % 3;
+      return { label: label, rot: TT_ROTS[i % TT_ROTS.length], cls: s.blending ? 'tt-whirl' : 'tt-layer', bg: c === 0 ? SEA : (c === 1 ? CREAM : JAM), fg: c === 0 ? DEEP : (c === 1 ? JAM : CREAM) };
+    });
+    var mix = ttMix([info.base].concat(info.fruits, info.boosts));
+    var mixName = mix.top === info.base ? 'plain ' + info.base.label : 'mostly ' + mix.top.label;
+    return {
+      color: mix.color, ink: mix.ink, mixName: mixName, mixList: labels.join(' · '),
+      steps: [
+        { n: '1', title: 'pick a base', hint: '', options: single(TT_SM_BASES, 'smBase') },
+        { n: '2', title: 'add fruit', hint: 'up to 3 · ' + s.smFruits.length + ' picked', options: multi(TT_SM_FRUITS, 'smFruits', 3) },
+        { n: '3', title: 'boost it', hint: 'up to 2 · ' + s.smBoosts.length + ' picked', options: multi(TT_SM_BOOSTS, 'smBoosts', 2) },
+        { n: '4', title: 'size', hint: '', options: single(TT_SM_SIZES, 'smSize') }
+      ],
+      layers: layers, showLayers: !s.blended, blended: s.blended,
+      jarClass: s.blending ? 'tt-jiggle' : '', bladeClass: s.blending ? 'tt-blade' : '',
+      priceText: 'EGP ' + info.price, eurText: '≈ €' + ttEur(info.price), sizeLabel: info.size.label,
+      blendLabel: s.blending ? 'blending…' : (s.blended ? 'blend again' : 'blend it'),
+      blend: function () { self.blend(); },
+      add: function () { self.addSmoothie(); },
+      addedFlash: s.smAdded, addIdle: !s.smAdded
+    };
+  }
+
+  toggleTop(id) {
+    var tops = this.state.tops.slice();
+    var i = tops.indexOf(id);
+    if (i >= 0) tops.splice(i, 1); else if (tops.length < 4) tops.push(id);
+    this.setState({ tops: tops });
+  }
+
+  place() {
+    var s = this.state;
+    var total = 0;
+    s.cart.forEach(function (c) { total += c.price * c.qty; });
+    var no = 'T-' + (100 + Math.floor(Math.random() * 900));
+    this.setState({ order: { no: no, name: s.name.trim(), mode: s.mode, table: s.table.trim(), when: s.when }, cart: [], view: 'done', bump: s.bump + 1 });
+  }
+
+  renderVals() {
+    var self = this;
+    var s = this.state;
+    var pill = function (sel) { return { bg: sel ? JAM : CREAM, fg: sel ? CREAM : JAM, selected: sel ? 'true' : 'false' }; };
+
+    var smv = this.smoothieVals();
+    var ybv = this.ybVals();
+    var tabs = TT_STATIONS.map(function (st) {
+      var sel = s.station === st.id;
+      var special = st.id === 'gf' || st.id === 'yogurt';
+      return { label: st.label, selected: sel ? 'true' : 'false', bg: sel ? JAM : (special ? SEA : CREAM), fg: sel ? CREAM : (special ? DEEP : JAM), pick: function () { self.setState({ station: st.id }); } };
+    });
+
+    var groups = TT_STATIONS.map(function (st) {
+      var items = TT_MENU.filter(function (m) { return m.st === st.id; }).map(function (m, i) {
+        var isAdded = s.added === m.id;
+        return {
+          name: m.name, desc: m.desc, gf: !!m.gf, priceText: ttFmt(m.price),
+          bg: m.st === 'yogurt' ? SEA : CREAM, priceColor: m.st === 'yogurt' ? DEEP : JAM,
+          dToast: m.d === 'toast', dBowl: m.d === 'bowl', dLoaf: m.d === 'loaf', dCup: m.d === 'cup',
+          isAdded: isAdded, notAdded: !isAdded, delay: (i * 90) + 'ms', addAria: 'Add ' + m.name + ' to your tray',
+          add: function () { self.addItem(m); }
+        };
+      });
+      return { show: s.station === st.id, intro: st.intro, items: items, isToast: st.id === 'toast', isGf: st.id === 'gf', isYogurt: st.id === 'yogurt', isDrinks: st.id === 'drinks', isSmoothie: st.id === 'smoothie', sm: smv, hasIntro: st.id !== 'buildtoast', yb: ybv, panelBg: (st.id === 'gf' || st.id === 'yogurt') ? SEA : CREAM };
+    });
+
+    var info = this.buildInfo();
+    var full = s.tops.length >= 4;
+    // tap still works; a drag that just ended swallows the click that follows it
+    var tap = function (fn) { return function () {
+      if (self._suppress || s.phase === 'toasting') return;
+      if (s.phase !== 'build') self.setState({ phase: 'build' });
+      fn();
+    }; };
+    var grabber = function (kind, o) { return function (e) { self.grab(e, 'tray', kind, o.id, o.label); }; };
+    var opt = function (kind, o, sel, extra, dis, pick) {
+      var p = pill(sel);
+      return Object.assign({ label: o.label, extra: extra, aria: o.label + (extra ? ', ' + extra : ''), bg: p.bg, fg: p.fg, selected: p.selected, disabled: dis, opacity: dis ? 0.45 : 1, grab: grabber(kind, o), pick: tap(pick) }, ttArt(kind + ':' + o.id));
+    };
+    var steps = [
+      { n: '1', title: 'pick your bread', hint: 'the bottom slice goes on the plate', options: TT_BREADS.map(function (o) { return opt('bread', o, s.bread === o.id, o.p ? '+' + o.p : 'included', false, function () { self.setState({ bread: o.id }); }); }) },
+      { n: '2', title: 'spread it', hint: '', options: TT_SPREADS.map(function (o) { return opt('spread', o, s.spread === o.id, '+' + o.p, false, function () { self.setState({ spread: o.id }); }); }) },
+      { n: '3', title: 'pile it on', hint: 'up to 4 · ' + s.tops.length + ' picked', options: TT_TOPS.map(function (o) { var sel = s.tops.indexOf(o.id) >= 0; return opt('top', o, sel, o.p ? '+' + o.p : 'free', !sel && full, function () { self.toggleTop(o.id); }); }) },
+      { n: '4', title: 'finish', hint: '', options: TT_FIN.map(function (o) { return opt('finish', o, s.finish === o.id, o.p ? '+' + o.p : (o.id === 'none' ? '' : 'free'), false, function () { self.setState({ finish: o.id }); }); }) }
+    ];
+
+    // the sandwich, bottom to top: slice, spread, toppings, finish, lid
+    var rows = [{ kind: 'bread', id: info.b.id, label: info.b.label + ' (bottom)', art: 'bread:' + info.b.id, fixed: true },
+      { kind: 'spread', id: info.sp.id, label: info.sp.label, art: 'spread:' + info.sp.id }];
+    info.tops.forEach(function (t) { rows.push({ kind: 'top', id: t.id, label: t.label, art: 'top:' + t.id }); });
+    if (info.f.id !== 'none') rows.push({ kind: 'finish', id: info.f.id, label: info.f.label, art: 'finish:' + info.f.id });
+    if (s.phase !== 'build') rows.push({ kind: 'lid', id: info.b.id, label: info.b.label + ' (top)', art: 'top-bread:' + info.b.id, fixed: true });
+    var canDrag = s.phase === 'build';
+    var stack = rows.map(function (it, i) {
+      var lifted = s.dragging && s.dragFrom === 'toast' && s.dragKey === it.kind + ':' + it.id;
+      var movable = canDrag && !it.fixed;
+      return Object.assign({ label: it.label, z: i + 1, overlap: i === 0 ? '0' : '-14px', opacity: lifted ? 0.25 : 1,
+        cursor: movable ? 'grab' : 'default', touch: movable ? 'none' : 'auto', title: movable ? 'Drag off the toast to remove' : it.label,
+        grab: function (e) { if (movable) self.grab(e, 'toast', it.kind, it.id, it.label); } }, ttArt(it.art));
+    });
+    var layers = stack;
+    var trayDrag = s.dragging && s.dragFrom === 'tray';
+    var toastDrag = s.dragging && s.dragFrom === 'toast';
+    var plateHint = '';
+    if (trayDrag) plateHint = s.plateOver ? 'let go!' : 'drop it on the toast';
+    if (toastDrag) plateHint = s.plateOver ? 'drag it off to remove' : 'let go to take it off';
+
+    var count = 0, total = 0;
+    s.cart.forEach(function (c) { count += c.qty; total += c.price * c.qty; });
+    var lines = s.cart.map(function (c) {
+      return {
+        name: c.name, detail: c.detail, hasDetail: !!c.detail, qty: c.qty, priceText: ttFmt(c.price * c.qty),
+        decAria: 'Remove one ' + c.name, incAria: 'Add one more ' + c.name,
+        inc: function () { self.qty(c.key, 1); }, dec: function () { self.qty(c.key, -1); }
+      };
+    });
+
+    var modes = [{ id: 'pickup', label: 'pick up at the counter' }, { id: 'table', label: 'bring it to my table' }].map(function (m) { var p = pill(s.mode === m.id); return { label: m.label, bg: p.bg, fg: p.fg, selected: p.selected, pick: function () { self.setState({ mode: m.id }); } }; });
+    var whens = [{ id: 'now', label: 'as soon as it’s ready' }, { id: '15', label: 'in 15 min' }, { id: '30', label: 'in 30 min' }].map(function (w) { var p = pill(s.when === w.id); return { label: w.label, bg: p.bg, fg: p.fg, selected: p.selected, pick: function () { self.setState({ when: w.id }); } }; });
+
+    var needName = !s.name.trim(), needTable = s.mode === 'table' && !s.table.trim();
+    var cannotPlace = needName || needTable || s.cart.length === 0;
+    var missing = needName ? 'Add your name so we know who to call.' : (needTable ? 'Add your table number.' : '');
+
+    var o = s.order;
+    var doneLine = '';
+    if (o) {
+      var whenTxt = o.when === 'now' ? 'as soon as it’s ready' : 'in about ' + o.when + ' minutes';
+      doneLine = o.mode === 'table'
+        ? 'Thanks, ' + o.name + '. We’ll bring it to table ' + o.table + ' ' + whenTxt + '. Rise & dine.'
+        : 'Thanks, ' + o.name + '. We’ll call your name at the counter ' + whenTxt + '. Rise & dine.';
+    }
+
+    var titles = { cart: 'your tray', checkout: 'almost there', done: 'yay!' };
+
+    return {
+      showBuilder: s.station === 'buildtoast',
+      goBuild: function () { self.setState({ station: 'buildtoast' }); },
+      marquee: TT_MARQUEE.concat(TT_MARQUEE),
+      tabs: tabs, groups: groups, steps: steps, layers: layers,
+      breadLabel: info.b.label, buildPrice: 'EGP ' + info.price, buildEur: '≈ €' + ttEur(info.price),
+      builtFlash: s.built, builtIdle: !s.built,
+      ghostDisplay: s.dragging ? 'block' : 'none', ghost: ttArt(s.dragKey), dragLabel: s.dragLabel,
+      stack: stack, showPlate: s.phase === 'build' || s.phase === 'topped', showToaster: s.phase === 'toasting' || s.phase === 'done',
+      phBuild: s.phase === 'build', phTopped: s.phase === 'topped', phToasting: s.phase === 'toasting', phDone: s.phase === 'done',
+      topOff: function () { self.topOff(); }, openUp: function () { self.openUp(); }, toastIt: function () { self.toastIt(); }, again: function () { self.again(); },
+      toastCls: s.phase === 'done' ? 'tt-popup' : 'tt-sink', bodyCls: s.phase === 'toasting' ? 'tt-jiggle' : '',
+      leverCls: s.phase === 'toasting' ? 'tt-lever' : 'tt-lever-up',
+      toastFill: s.phase === 'done' ? (TT_TOASTED[info.b.id] || '#c98a4a') : (TT_BREAD_FILL[info.b.id] || '#ecc98a'),
+      midFill: TT_MID[info.sp.id] || JAM,
+      heatOp: s.phase === 'toasting' ? 1 : 0, dingOp: s.phase === 'done' ? 1 : 0,
+      toasterAria: s.phase === 'done' ? 'Your toast pops out of the toaster' : 'Your toast is in the toaster',
+      toasterLine: s.phase === 'done' ? 'golden! it’s in your tray.' : 'in the toaster… hot stuff.',
+      plateBg: trayDrag && s.plateOver ? '#fbecb8' : BUTTER,
+      plateRing: trayDrag ? (s.plateOver ? '0 0 0 4px #7b1e2e' : '0 0 0 3px #9cc5be') : 'none',
+      plateMsg: s.plateMsg, plateMsgShow: !!s.plateMsg,
+      plateHint: plateHint, plateHintShow: !!plateHint && !s.plateMsg,
+      surprise: function () { self.surprise(); },
+      addBuild: function () { self.addBuild(); },
+      count: count, cartAria: 'Open your tray, ' + count + ' items',
+      bumpClass: s.bump === 0 ? '' : (s.bump % 2 ? 'tt-bumpA' : 'tt-bumpB'),
+      open: s.open, vCart: s.view === 'cart', vCheckout: s.view === 'checkout', vDone: s.view === 'done',
+      drawerTitle: titles[s.view],
+      empty: s.cart.length === 0, notEmpty: s.cart.length > 0, lines: lines, totalText: ttFmt(total),
+      openCart: function () { self.setState({ open: true, view: s.view === 'done' ? 'cart' : s.view }); },
+      closeCart: function () { self.setState({ open: false, view: s.view === 'done' ? 'cart' : s.view }); },
+      toCheckout: function () { self.setState({ view: 'checkout' }); },
+      backToCart: function () { self.setState({ view: 'cart' }); },
+      orderMore: function () { self.setState({ open: false, view: 'cart' }); },
+      name: s.name, table: s.table,
+      onName: function (e) { self.setState({ name: e.target.value }); },
+      onTable: function (e) { self.setState({ table: e.target.value }); },
+      modes: modes, whens: whens, isTable: s.mode === 'table',
+      cannotPlace: cannotPlace, placeOpacity: cannotPlace ? 0.45 : 1, missing: missing,
+      place: function () { if (!cannotPlace) self.place(); },
+      orderNo: o ? o.no : '', doneLine: doneLine
+    };
+  }
+}
+
+ttMount(Component);
+</script>
+</body>
+</html>
